@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+.list_wrap {
+    list-style: none;
+    /* デフォルトのアイコンを消す */
+    margin: 0;
+    /* デフォルト指定上書き */
+    padding: 0;
+    /* デフォルト指定上書き */
+}
+
+.list:before {
+    content: "";
+    /* 空の要素作成 */
+    width: 10px;
+    /* 幅指定 */
+    height: 10px;
+    /* 高さ指定 */
+    display: inline-block;
+    /* インラインブロックにする */
+    background-color: #F44336;
+    /* 背景色指定 */
+    border-radius: 50%;
+    /* 要素を丸くする */
+    position: relative;
+    /* 位置調整 */
+    top: -50px;
+    /* 位置調整 */
+    margin-right: 5px;
+    /* 余白指定 */
+}

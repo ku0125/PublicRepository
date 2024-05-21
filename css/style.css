@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+body {
+    background: #fff067;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: start;
+    margin-top: 50px;
+}
+nav {
+    border-bottom: 1px solid black;
+  }
+h1 {color: blue;}
+p {color: green;}
