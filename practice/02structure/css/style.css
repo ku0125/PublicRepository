@@ -9,7 +9,7 @@ header.logo {
 }
 
 .logo-link {
-    text-decoration: none;
+    text-decoration: dashed;
 }
 
 .nav {
@@ -31,8 +31,7 @@ header.logo {
 
 .nav-link {
     color: #000;
-    /* カスタマイズしてください */
-    display: block;
+    display: flex;
     margin-right: 20px;
     text-decoration: none;
     padding: 10px 0px;
@@ -50,8 +49,6 @@ div#main-container {
 
 /* メインのスタイル */
 main {
-    /* ブロックを浮かせて右に寄せる */
-    /* float: right; */
     /* 内余白 */
     padding: 10px;
     /* 外余白 */
