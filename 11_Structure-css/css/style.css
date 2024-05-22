@@ -1,0 +1,77 @@
+/* ヘッダーのスタイル */
+header {
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    /* 背景色 */
+    background-color: antiquewhite;
+}
+
+div#main-container{
+        /* 内余白 */
+        padding: 10px;
+        /* 外余白 */
+        margin: 10px;
+        background-color: palegreen;
+        /* 子供のサイズの自動調整 */
+        display: flex;
+}
+
+/* メインのスタイル */
+main {
+    /* ブロックを浮かせて右に寄せる */
+    /* float: right; */
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px auto;
+    /* スペースで区切ることで各辺の指定ができる。 */
+
+    /* 横幅 */
+    width: 100%;
+    /* 背景色 */
+    background-color: lavender;
+}
+
+article {
+    background-color: aqua;
+}
+
+section {
+    background-color: darkcyan;
+}
+
+aside{
+    /* ブロックを浮かせて右に寄せる */
+    /* float: right; */
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    width: 200px;
+    background-color:goldenrod;
+    /* 非表示 */
+    display: none;
+}
+
+footer{
+    clear: left;
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    background-color: antiquewhite;
+}
+    /* スマホ対応用,レスポンシブデザイン */
+@media screen and (min-width:400px){
+    aside{
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    main{
+        width: 1000px;
+    }
+}
