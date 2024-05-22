@@ -1,0 +1,138 @@
+/* ヘッダーのスタイル */
+header.logo {
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    /* 背景色 */
+    background-color: #2cc5ac;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.nav {
+    top: 0px;
+    position: sticky;
+    align-items: center;
+    background-color: #9896f1;
+    display: flex;
+    margin: 10px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-link {
+    color: #000;
+    /* カスタマイズしてください */
+    display: block;
+    margin-right: 20px;
+    text-decoration: none;
+    padding: 10px 0px;
+}
+
+div#main-container {
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    background-color: #9896f1;
+    /* 子供のサイズの自動調整 */
+    display: flex;
+}
+
+/* メインのスタイル */
+main {
+    /* ブロックを浮かせて右に寄せる */
+    /* float: right; */
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px auto;
+    /* スペースで区切ることで各辺の指定ができる。 */
+
+    /* 横幅 */
+    width: 100%;
+    /* 背景色 */
+    background-color: #8ef6e4;
+}
+
+article {
+    background-color: #d59bf6;
+}
+
+section {
+    background-color:  #edb1f1;
+}
+
+aside.side-left {
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    width: 250px;
+    background-color: #8ef6e4;
+    /* 非表示 */
+    display: none;
+}
+
+aside.side-right {
+    /* ブロックを浮かせて右に寄せる */
+    /* float: right; */
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    width: 200px;
+    background-color: #8ef6e4;
+    /* 非表示 */
+    display: none;
+}
+
+.advertise{
+    width: 100%;
+}
+
+.alink,.advertise{
+    height: 300px;
+    top: 80px;
+    margin-top: 10px;
+    position: sticky;
+    background-color:#2cc5ac ;
+}
+
+.advertise-item,.alink-item{
+    list-style: none;
+}
+
+footer {
+    clear: left;
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    background-color: #2cc5ac;
+}
+
+/* スマホ対応用,レスポンシブデザイン */
+@media screen and (min-width:600px) {
+
+    aside.side-left,
+    aside.side-right {
+        display:flex;
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    main {
+        width: 1000px;
+    }
+}
