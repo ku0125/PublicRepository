@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* 画面の横スクロールを防止 */
+}
+
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+header {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    transform: translateY(-100%); /* 初期状態でサイドバーを画面上部に隠す */
+    transition: transform 0.3s ease; /* トランジションを追加 */
+}
+
+.close-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: right;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar {
+        transform: translateY(-100%); /* 画面外にサイドバーを隠す */
+    }
+
+    .sidebar.show-sidebar {
+        transform: translateY(0); /* サイドバーを画面上部から表示 */
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .show-sidebar .close-btn {
+        display: block;
+    }
+}
