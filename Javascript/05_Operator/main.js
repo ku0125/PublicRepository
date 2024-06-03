@@ -210,5 +210,45 @@ result = !bool3
 output.innerHTML += result
 output.innerHTML += '<br>'
 
-// 使い方の具体例
+// 文字列演算子
+output.innerHTML += '- 文字列演算子 -'
+output.innerHTML += '<br>'
 
+let str4 = '田中'
+let str5 = '太郎'
+result = str4 + str5
+output.innerHTML += result
+output.innerHTML += '<br>'
+let str6 = '100'
+let str7 = '200'
+result = str6 + str7
+output.innerHTML += result
+output.innerHTML += '<br>'
+
+// 使い方の具体例
+output.innerHTML += '- 比較演算子＋論理演算子の使い方の具体例 -'
+output.innerHTML += '<br>'
+// 値6 ～ 12の時true
+// 6以上　かつ　12以下　と言い換えられる
+num7 = 8
+num8 = 14
+
+result = 6 <= num7 && num7 <= 12
+output.innerHTML += result
+output.innerHTML += '<br>'
+result = 6 <= num8 && num8 <= 12
+output.innerHTML += result
+output.innerHTML += '<br>'
+
+output.innerHTML += '- 厳密等価の使い方の具体例 -'
+output.innerHTML += '<br>'
+let str2 = 1
+let str3 = '01'
+
+result = str2 == str3
+output.innerHTML += result
+output.innerHTML += '<br>'
+
+result = str2 === str3
+output.innerHTML += result
+output.innerHTML += '<br>'

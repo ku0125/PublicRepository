@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課題1 簡易電卓</title>
+</head>
+
+<body>
+    <div>
+        <label for="num1">値1</label>
+        <input type="number" id="num1">
+    </div>
+    <div>
+        <label for="num2">値2</label>
+        <input type="number" id="num2">
+    </div>
+    </div>
+    <div id="output">
+        <input type="button" value="加算(+)" onclick="calc1()">
+        <button type="button" onclick="calc1()">+</button>
+        <input type="button" value="減算(-)" onclick="calc2()">
+        <input type="button" value="乗算(*)" onclick="calc3()">
+        <input type="button" value="除算(/)" onclick="calc4()">
+        <input type="button" value="剰余算(%)" onclick="calc5()">
+    </div>
+    答え:<div id="calc"></div>
+    
+    <div>
+        <label for="numh">身長(cm)</label>
+        <input type="number" id="numh">
+    </div>
+    <div>
+        <label for="numm">体重(kg)</label>
+        <input type="number" id="numm">
+    </div>
+    <div id="output2">
+        <input type="button" value="BMI" onclick="calc6()">
+    </div>
+    BMI:<div id="calc_bmi"></div>
+    
+    <script src="./main.js"></script>
+</body>
+
+</html>
