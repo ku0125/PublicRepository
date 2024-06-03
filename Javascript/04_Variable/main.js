@@ -41,3 +41,47 @@ let msg = 'あいうえお'
 output.textContent = msg
 
 
+// 変数の型について
+// 大きく分類すると基本型と参照型に分けられる
+
+// 基本型
+// 文字列型や数値型のことで、その値がそのまま変数に格納されている。
+// 一覧：
+// 数値型
+// 文字列型
+// 真偽型
+// numll
+// undefined
+// シンボル
+
+// 参照型
+// 配列やオブジェクト、関数の事でその値が格納されているアドレスを格納している。
+// 一覧：
+// 配列
+// オブジェクト
+// 関数
+
+// 数値型としての変数
+let num1 = 100
+// 文字列型としての変数
+let str1 = '100'
+
+output.innerHTML += '<br>'
+output.innerHTML += num1
+output.innerHTML += '<br>'
+output.innerHTML += str1
+
+// 数値型+数値型 : 数値型
+let num2 = num1 + num1
+output.innerHTML += '<br>'
+output.innerHTML += num2
+
+// 文字列型+文字列型 : 文字列型
+let str2 = str1 + str1
+output.innerHTML += '<br>'
+output.innerHTML += str2
+
+// 数値型+文字列型 : 文字列型
+let mix1 = num1 + str1
+output.innerHTML += '<br>'
+output.innerHTML += mix1
