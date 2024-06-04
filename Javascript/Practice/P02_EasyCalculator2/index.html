@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課題2 簡易電卓_switch</title>
+</head>
+
+<body>
+    <div>
+        <label for="num1">値1(身長(cm))</label>
+        <input type="number" id="num1">
+    </div>
+    <div>
+        <label for="num2">値2(体重(kg))</label>
+        <input type="number" id="num2">
+    </div>
+    </div>
+        <input type="button" value="加算(+)" onclick="calc(ADD)">
+        <input type="button" value="減算(-)" onclick="calc(SUB)">
+        <input type="button" value="乗算(*)" onclick="calc(MUL)">
+        <input type="button" value="除算(/)" onclick="calc(DIV)">
+        <input type="button" value="剰余算(%)" onclick="calc(MOD)">
+        <input type="button" value="BMI" onclick="calc(BMI)">
+        <input type="button" value="リセット" onclick="calc(RESET)">
+    </div>
+    <div id="output"></div>
+    <script src="./main.js"></script>
+</body>
+
+</html>
