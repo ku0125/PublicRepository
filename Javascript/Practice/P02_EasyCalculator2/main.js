@@ -8,7 +8,8 @@ const operators = {
    '*': (a, b) => a * b,
    '/': (a, b) => a / b,
    '%': (a, b) => ({quotient: Math.floor(a / b), remainder: a % b}),
-   'BMI': (height, weight) => weight / ((height / 100) ** 2)
+   'BMI': (height, weight) => weight / ((height / 100) ** 2),
+   '^': (a, b) => Math.pow(a, b)
 }
 
 function truncateToFourDecimals(number) {
