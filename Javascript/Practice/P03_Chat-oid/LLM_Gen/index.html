@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャットもどき</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>チャットもどき</h1>
+    </header>
+    <main>
+        <div id="msg"></div>
+    </main>
+    <footer>
+        <div>
+            <input type="text" id="comment">
+        </div>
+        <div class="button-container">
+            <input type="button" value="Aさん" onclick="chat('A')">
+            <input type="button" value="Bさん" onclick="chat('B')">
+            <input type="button" value="リセット" onclick="resetFields()">
+        </div>
+    </footer>
+    <script src="./main.js"></script>
+</body>
+
+</html>
