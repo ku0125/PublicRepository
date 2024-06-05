@@ -2,15 +2,17 @@ let comment = document.getElementById('comment')
 let msg = document.getElementById('msg')
 
 function chat(mode) {
+    const now = new Date();
+    const timestamp = now.toLocaleString('ja-JP');
     switch (mode) {
         case 'A':
             // Aさん出力部分に入力部分の内容が出力される(赤色)
-            msg.innerHTML += `<p class="coma">${comment.value}</p>`
+            msg.innerHTML += `<p class="coma">${timestamp} : Aさん<br>${comment.value}</p>`
             comment.value = ''
             break;
         case 'B':
             // Bさん出力部分に入力部分の内容が出力される(青色)  
-            msg.innerHTML += `<p class="comb">${comment.value}</p>`
+            msg.innerHTML += `<p class="comb">${timestamp} : Bさん<br>${comment.value}</p>`
             comment.value = ''
             break;
         case 'RESET':
