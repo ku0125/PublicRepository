@@ -23,3 +23,4 @@ function calc(mode) {
     let intermediate = mode === 'RESET' ? '' : `${val1} ${mode === 'ADD' ? '+' : mode === 'SUB' ? '-' : mode === 'MUL' ? '*' : mode === 'DIV' ? '/' : mode === 'MOD' ? '%' : '/'} ${val2}`;
     output.innerHTML = `計算結果: ${intermediate} = ${result}`;
 }
+

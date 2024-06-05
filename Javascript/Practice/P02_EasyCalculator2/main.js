@@ -1,74 +1,39 @@
-// 出力準備
-let output = document.getElementById('output')
-
-// モードごとの定数をおく
-// 記号をそのまま使ったら省略できそう
-const ADD = 1
-const SUB = 2
-const MUL = 3
-const DIV = 4
-const MOD = 5
-const BMI = 6
-const RESET = 0
-
-// 変数の宣言
 let num1 = document.getElementById("num1")
 let num2 = document.getElementById("num2")
-// 結果
-let result = ''
-// 途中式
-let intermediate = ''
+let result = document.getElementById("result")
 
-// 計算の関数
-function calc(mode) {
-    // 先に型を変換しておく
-    let val1 = Number(num1.value)
-    let val2 = Number(num2.value)
-    switch (mode) {
-        // 足し算
-        case ADD:
-            // 途中式を表示
-            intermediate = `${val1} + ${val2}`
-            result = val1 + val2
-            break;
-        // 引き算
-        case SUB:
-            intermediate = `${val1} - ${val2}`
-            result = val1 - val2
-            break;
-        // 掛け算
-        case MUL:
-            intermediate = `${val1} * ${val2}`
-            result = val1 * val2
-            break;
-        // 割り算
-        case DIV:
-            intermediate = `${val1} / ${val2}`
-            result = val1 / val2
-            break;
-        // 剰余算
-        case MOD:
-            intermediate = `${val1} % ${val2}`
-            result = val1 % val2
-            break;
-        // BMI計算
-        case BMI:
-            intermediate = `${val2} / (${val1} / 100) ^ 2`
-            result = val2 / (val1 / 100) ** 2
-            break;
-        // リセット（RESETがcaseにない値なのでここに飛ぶ）
-        default:
-            // 保持してある値を全部消す
-            result = ''
-            intermediate = ''
-            num1.value = ''
-            num2.value = ''
-            break;
-    }
-    // 結果を変数に格納
-    // テンプレートリテラルを使って途中式と結果を分けて表示する
-    let msg = `計算結果:${intermediate} = ${result}`
+const operators = {
+   '+': (a, b) => a + b,
+   '-': (a, b) => a - b,
+   '*': (a, b) => a * b,
+   '/': (a, b) => a / b,
+   '%': (a, b) => ({quotient: Math.floor(a / b), remainder: a % b}),
+   'BMI': (height, weight) => weight / ((height / 100) ** 2)
+}
 
-    // 結果をHTMLに出力
-    output.innerHTML = msg
+function truncateToFourDecimals(number) {
+    return Math.floor(number * 10000) / 10000;
+}
+
+function calc(op) {
+   let num1n = Number(num1.value)
+   let num2n = Number(num2.value)
+   let resultNum = operators[op](num1n, num2n)
+   let msg;
+
+   if (op === '%') {
+       msg = `${num1n} ${op} ${num2n} = 商: ${truncateToFourDecimals(resultNum.quotient)}, 余り: ${truncateToFourDecimals(resultNum.remainder)}`
+   } else if (op === 'BMI') {
+       msg = `BMI = ${truncateToFourDecimals(resultNum).toFixed(2)}`
+   } else {
+       msg = `${num1n} ${op} ${num2n} = ${truncateToFourDecimals(resultNum)}`
+   }
+
+   result.textContent = msg
+}
+
+function resetFields() {
+    num1.value = ''
+    num2.value = ''
+    result.textContent = ''
 }
