@@ -1,0 +1,43 @@
+.coma {
+    color: red;
+    background-color:pink;
+
+}
+
+.comb {
+    color: blue;
+    background-color:azure;
+}
+
+header {
+
+    text-align: center;
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    background-color: #2cc5ac;
+}
+
+main {
+    text-align: left;
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    /* スペースで区切ることで各辺の指定ができる。 */
+    /* 横幅 */
+    /* width: 100%; */
+    /* 背景色 */
+    background-color: #8ef6e4;
+}
+
+footer {
+    text-align: center;
+
+    /* 内余白 */
+    padding: 10px;
+    /* 外余白 */
+    margin: 10px;
+    background-color: #2cc5ac;
+}
