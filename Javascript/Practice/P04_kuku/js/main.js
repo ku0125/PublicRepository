@@ -56,8 +56,16 @@ tableHTML = '<table border=1>'
 tableHTML += '<tr>'
 
 for (let i = 0; i < 10; i++) {
+    result = i
+    tableHTML += `<th>${result}</th>`
+}
 
-    for (let j = 0; j < 10; j++) {
+tableHTML += '</tr>'
+
+for (let i = 1; i < 10; i++) {
+    result = i
+    tableHTML += `<th>${result}</th>`
+    for (let j = 1; j < 10; j++) {
         result = i * j
         tableHTML += `<td>${result}</td>`
     }
