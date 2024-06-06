@@ -1,0 +1,40 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Aさん's text color and background color */
+.A_SAN {
+    color: red;
+    background-color: pink;
+}
+
+/* Bさん's text color and background color */
+.B_SAN {
+    color: blue;
+    background-color: azure;
+}
+
+header {
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    /* background-color: #2cc5ac; */
+}
+
+main {
+    text-align: left;
+    padding: 10px;
+    margin: 10px;
+    /* background-color: #8ef6e4; */
+}
+
+footer {
+    position: sticky;
+    top: 100%;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    /* background-color: #2cc5ac; */
+}

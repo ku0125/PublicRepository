@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャットもどき</title>
     <!-- css埋め込み 意外と忘れる-->
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
@@ -24,14 +24,14 @@
         </div>
         <div class="button-container">
             <!-- ボタンを用意 onclickで引数を設定 -->
-            <input type="button" value="Aさん" onclick="chat('A')">
-            <input type="button" value="Bさん" onclick="chat('B')">
+            <input type="button" value="Aさん" onclick="chat('A_SAN')">
+            <input type="button" value="Bさん" onclick="chat('B_SAN')">
             <!-- リセット用の関数をわける -->
             <input type="button" value="リセット" onclick="resetFields()">
         </div>
     </footer>
     <!-- JavaScript埋め込み 意外と忘れる -->
-    <script src="./main.js"></script>
+    <script src="../js/main.js" ></script>
 </body>
 
 </html>

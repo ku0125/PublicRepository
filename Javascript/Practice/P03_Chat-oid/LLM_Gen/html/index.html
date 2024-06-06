@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャットもどき</title>
+    <!-- Embed CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>チャットもどき</h1>
+    </header>
+    <main>
+        <!-- Set up the post display area -->
+        <div id="msg"></div>
+    </main>
+    <footer>
+        <div>
+            <!-- Input form -->
+            <input type="text" id="comment">
+        </div>
+        <div class="button-container">
+            <!-- Prepare buttons with onclick arguments -->
+            <input type="button" value="Aさん" onclick="chat('A_SAN')">
+            <input type="button" value="Bさん" onclick="chat('B_SAN')">
+            <!-- Separate function for reset -->
+            <input type="button" value="リセット" onclick="resetFields()">
+        </div>
+    </footer>
+    <!-- Embed JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

@@ -10,14 +10,14 @@ body {
 
 /* Aさんの文字色・背景色を変更 */
 /* Aさん出力部分に入力部分の内容が出力される(赤色) */
-.coma {
+.A_SAN {
     color: red;
     background-color: pink;
 }
 
 /* Bさんの文字色・背景色を変更 */
 /* Bさん出力部分に入力部分の内容が出力される(青色)  */
-.comb {
+.B_SAN {
     color: blue;
     background-color: azure;
 }
