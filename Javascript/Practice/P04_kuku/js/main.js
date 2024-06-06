@@ -52,24 +52,32 @@ output3.innerHTML = tableHTML
 // 課題4
 // 外枠つきの九九表を出力
 
+// tableHTMLの箱を作ってタグをどんどん追加する
 tableHTML = '<table border=1>'
 tableHTML += '<tr>'
 
+// 外枠(<th>)用の数字を追加
 for (let i = 0; i < 10; i++) {
     result = i
     tableHTML += `<th>${result}</th>`
 }
-
 tableHTML += '</tr>'
 
+
 for (let i = 1; i < 10; i++) {
+    // 外枠(<th>)用の数字を出力
     result = i
     tableHTML += `<th>${result}</th>`
+
     for (let j = 1; j < 10; j++) {
         result = i * j
         tableHTML += `<td>${result}</td>`
     }
     tableHTML += '</tr>'
 }
+
+// tableタグを閉じる
 tableHTML += '</table>'
+
+// まとめてtableHTMLを出力
 output4.innerHTML += tableHTML
