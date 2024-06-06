@@ -47,6 +47,7 @@ for (let i = 1; i < 10; i++) {
 // output3.innerHTML += '</table>'
 // // 動かない（？？？？？？）
 
+
 // 課題3-2
 // 九九表を出力
 // tableタグを使用
