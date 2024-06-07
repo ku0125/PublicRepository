@@ -1,5 +1,16 @@
-// 配列(実用)
+// WebAPI
 
 // 出力準備
 let output = document.getElementById('output')
 
+function capture(){
+    // データの取得（非同期通信）
+    // 現代の通信では必須
+    fetch('https://dog.ceo/api/breeds/image/random')
+        .then(Response => Response.json())
+        .then(json => {
+            output.src = message
+        })
+
+
+}
