@@ -36,4 +36,50 @@ output.innerHTML += arr02 + '<br>'
 output.innerHTML += arr02.pop() + '<br>'
 output.innerHTML += arr02 + '<br>'
 
-// 連想配列
+// 連想配列(オブジェクト)
+
+// 連想配列(オブジェクト)の生成方法
+let map01 = {}
+let map02 = {
+    '講師':'田中',
+    '生徒1':'山本',
+    '生徒2':'佐藤'
+}
+
+// 連想配列の取得方法
+output.innerHTML += map02['講師'] + '<br>'
+output.innerHTML += map02['生徒1'] + '<br>'
+output.innerHTML += map02['生徒2'] + '<br>'
+
+// 連想配列の上書き
+map02['講師'] = '田中太郎'
+output.innerHTML += map02['講師'] + '<br>'
+
+// 連想配列への要素の追加
+map02['生徒3'] = '佐藤'
+
+// 連想配列を直接出力しようとすると[object Object]が表示される
+output.innerHTML += map02 + '<br>'
+output.innerHTML += Object.keys(map02) + '<br>'
+output.innerHTML += Object.values(map02) + '<br>'
+
+// 連想配列(オブジェクト)の生成方法
+let map03 = {
+    '講師':'田中',
+    '生徒1':'山本',
+    '生徒2':'佐藤'
+}
+
+// 連想配列(オブジェクト)の取得方法
+output.innerHTML += map03.講師 + '<br>'
+output.innerHTML += map03.生徒1 + '<br>'
+output.innerHTML += map03.生徒2 + '<br>'
+
+// 連想配列(オブジェクト)の上書き
+map03.講師 = '田中太郎'
+output.innerHTML += map03.講師 + '<br>'
+
+// 連想配列(オブジェクト)への要素の追加
+map03.生徒3 = '佐藤'
+output.innerHTML += Object.keys(map03) + '<br>'
+output.innerHTML += Object.values(map03) + '<br>'
