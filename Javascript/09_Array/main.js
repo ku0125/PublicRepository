@@ -41,6 +41,8 @@ output.innerHTML += arr02 + '<br>'
 // 連想配列(オブジェクト)の生成方法
 let map01 = {}
 let map02 = {
+    // 'key':'value'の形で表す
+    // keyには日本語をあまり用いない
     '講師':'田中',
     '生徒1':'山本',
     '生徒2':'佐藤'
@@ -60,6 +62,8 @@ map02['生徒3'] = '佐藤'
 
 // 連想配列を直接出力しようとすると[object Object]が表示される
 output.innerHTML += map02 + '<br>'
+
+// Object.keys,valuesで表示できる
 output.innerHTML += Object.keys(map02) + '<br>'
 output.innerHTML += Object.values(map02) + '<br>'
 
