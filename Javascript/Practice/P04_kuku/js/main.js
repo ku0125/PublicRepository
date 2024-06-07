@@ -5,15 +5,13 @@ let output1 = document.getElementById('output1')
 let output2 = document.getElementById('output2')
 let output3 = document.getElementById('output3')
 let output4 = document.getElementById('output4')
-let result = ''
 
 // 課題1
 // 九九の答えだけを出力
 
 for (let i = 1; i < 10; i++) {
     for (let j = 1; j < 10; j++) {
-        result = i * j
-        output1.innerHTML += result + ' '
+        output1.textContent += `${i*j} `
     }
 }
 
@@ -22,30 +20,31 @@ for (let i = 1; i < 10; i++) {
 
 for (let i = 1; i < 10; i++) {
     for (let j = 1; j < 10; j++) {
-        result = i * j
-        output2.innerHTML += `${i} * ${j} = ${result} `
+        output2.innerHTML += `${i}*${j} = ${i * j} `
     }
     output2.innerHTML += '<br>'
 }
 
-// // 課題3-1
-// // 九九表を出力
-// // tableタグを使用
+// 課題3-1
+// 九九表を出力
+// 空白文字を使用
 
-// // output3.innerHTMLでタグをどんどん追加する
-// output3.innerHTML = '<table border=1>'
-// output3.innerHTML += '<tr>'
+// output3.innerHTMLでタグをどんどん追加する
 
-// for (let i = 1; i < 10; i++) {
+for (let i = 1; i < 10; i++) {
 
-//     for (let j = 1; j < 10; j++) {
-//         result = i * j
-//         output3.innerHTML += `<td>${result}</td>`
-//     }
-//     output3.innerHTML += '</tr>'
-// }
-// output3.innerHTML += '</table>'
-// // 動かない（？？？？？？）
+
+    for (let j = 1; j < 10; j++) {
+        if(i*j>9){
+            output3.innerHTML += `${i*j}&nbsp;`
+         }else{
+            output3.innerHTML += `&nbsp;&nbsp;${i*j}&nbsp;`
+         }
+    }
+    output3.innerHTML += '<br>'
+}
+output3.innerHTML += '</table>'
+// 動かない（？？？？？？）
 
 
 // 課題3-2
@@ -53,21 +52,20 @@ for (let i = 1; i < 10; i++) {
 // tableタグを使用
 
 // tableHTMLの箱を作ってタグをどんどん追加する
-let tableHTML = '<table border=1>'
+let tableHTML = '<table border=1 class="kuku">'
 tableHTML += '<tr>'
 
 for (let i = 1; i < 10; i++) {
 
     for (let j = 1; j < 10; j++) {
-        result = i * j
-        tableHTML += `<td>${result}</td>`
+        tableHTML += `<td>${i * j}</td>`
     }
     tableHTML += '</tr>'
 }
 tableHTML += '</table>'
 
 // まとめてtableHTMLを出力
-output3.innerHTML = tableHTML
+output4.innerHTML = tableHTML
 // 動く（？？？？？？）
 
 
@@ -80,20 +78,16 @@ tableHTML += '<tr>'
 
 // 外枠(<th>)用の数字を追加
 for (let i = 0; i < 10; i++) {
-    result = i
-    tableHTML += `<th>${result}</th>`
+    tableHTML += `<th>${i}</th>`
 }
 tableHTML += '</tr>'
 
-
 for (let i = 1; i < 10; i++) {
     // 外枠(<th>)用の数字を出力
-    result = i
-    tableHTML += `<th>${result}</th>`
+    tableHTML += `<th>${i}</th>`
 
     for (let j = 1; j < 10; j++) {
-        result = i * j
-        tableHTML += `<td>${result}</td>`
+        tableHTML += `<td>${i * j}</td>`
     }
     tableHTML += '</tr>'
 }
@@ -102,4 +96,4 @@ for (let i = 1; i < 10; i++) {
 tableHTML += '</table>'
 
 // まとめてtableHTMLを出力
-output4.innerHTML += tableHTML
+output5.innerHTML += tableHTML

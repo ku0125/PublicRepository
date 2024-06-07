@@ -4,3 +4,7 @@ table th{
     color: aqua;
     background: green;
 }
+
+table{
+    text-align: center;
+}
