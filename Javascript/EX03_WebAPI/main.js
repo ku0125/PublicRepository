@@ -24,7 +24,7 @@ function capture() {
 
         if (remainingTime <= 0) {
             clearInterval(countdownTimer);
-            captureButton.value = "取得";
+            captureButton.value = "犬の画像を取得";
             captureButton.disabled = false;
         }
     }, 1000);
