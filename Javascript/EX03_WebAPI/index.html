@@ -6,16 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebAPI</title>
     <style>
-        img{
+        img {
             width: 350px;
             height: 350px;
             object-fit: contain;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        #captureButton {
+            background: #eee;
+            border-radius: 50px;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 260px;
+            padding: 10px 25px;
+            color: #313131;
+            transition: 0.3s ease-in-out;
+            font-weight: 500;
         }
     </style>
 </head>
 
 <body>
-    <div>
+    <div class="button-container">
         <input type="button" value="取得" id="captureButton">
     </div>
     <img alt="犬の画像が表示される場所" id="output">
