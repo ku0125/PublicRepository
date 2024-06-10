@@ -1,19 +1,22 @@
-// JSON処理
-
-// 出力準備
-let output = document.getElementById('output')
-
-window.onload = function list(){
-    // データの取得（非同期通信）
-    // 現代の通信では必須
-    fetch('../data/data.json')
-        .then(Response => Response.json())
+window.onload = function() {
+    fetch('data.json')
+        .then(response => response.json())
         .then(data => {
-            console.log(data)
-            data.members.forEach(function (member) {
-                output.innerHTML += `${member.name}`
+            let grid = document.getElementById('item-grid');
+
+            data.members.forEach((member, index) => {
+                let card = document.createElement('div');
+                card.classList.add('item-card');
+                card.innerHTML = `
+                    <img src="../img/${member.img}" alt="${member.name}">
+                    <h2>${member.name}</h2>
+                `;
+                card.addEventListener('click', () => {
+                    localStorage.setItem('selectedMember', JSON.stringify(member));
+                    window.location.href = 'detail.html';
+                });
+                grid.appendChild(card);
             });
-        });
-
-
-}
+        })
+        .catch(error => console.error('Error fetching the JSON data:', error));
+};
