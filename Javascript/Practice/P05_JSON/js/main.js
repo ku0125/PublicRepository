@@ -13,10 +13,8 @@ window.onload = function list(){
             json.members.forEach(function (member) {
                 let outHtml = `
                 <dl>
-                    <dt>名前</dt>
-                    <dd>${member.name}</dd>
-                    <dt>画像</dt>
-                    <dd>${member.img}</dd>
+                <dd><img src="../img/${member.img}" alt="${member.name}" ></dd>
+                <dd>${member.name}</dd>
                 </dl>
                 `
                 output.innerHTML += outHtml + '<br>'
