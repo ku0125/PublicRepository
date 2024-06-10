@@ -4,15 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebAPI</title>
+    <title>犬ボタン</title>
+    <style>
+        img {
+            width: 350px;
+            height: 350px;
+            object-fit: contain;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #captureButton {
+            background: #eee;
+            border-radius: 50px;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 260px;
+            padding: 10px 25px;
+            color: #313131;
+            transition: 0.3s ease-in-out;
+            font-weight: 500;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #89c7de;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+
+            position: absolute;
+            /*←絶対位置*/
+            bottom: 0;
+            /*下に固定*/
+        }
+    </style>
 </head>
 
 <body>
-    <div>
-        <input type="button" value="取得" onclick="">
+    <header>
+        <h1>犬ボタン</h1>
+    </header>
+    <img alt="犬の画像が表示される場所" id="output">
+    <div class="button-container">
+        <input type="button" value="犬の画像を取得" id="captureButton">
     </div>
-    <img alt="画像" id="output">
     <script src="./main.js"></script>
+    <footer>
+        <div>
+            <a href="https://dog.ceo/dog-api/">Powered by Dog API</a>
+        </div>
+        <div>
+            Copyright © 2024 ku0125 All Rights Reserved.
+        </div>
+    </footer>
 </body>
 
 </html>
