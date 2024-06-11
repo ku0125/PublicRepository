@@ -10,19 +10,26 @@ window.onload = function list() {
     fetch('../data/data.json')
         .then(Response => Response.json())
         .then(json => {
+            // 動作確認用のlog
             console.log(json)
-            const members = json.members[0]
+
             json.members.forEach(function (member) {
                 let outHtml = `
-                <a href="./detail.html"><div class='item-detail'>
+                <dl onclick="href()">
+                <div class='item-detail'>
                 <h2>${member.name}</h2>
                 <img src="../img/${member.img}" alt="${member.name}" ></dd>
-                </div></a>
+                </div></dl>
                 `
                 output.innerHTML += outHtml
-                });
-                })
-                .catch(error => console.error('Error fetching the JSON data:', error));
-                };
-                
-                // <img src="http://192.168.0.32/img/${member.img}" alt="${member.name}" ></dd>
+            });
+        })
+        // エラー起きたときの処理 書かなくてもいい
+        .catch(error => console.error('Error fetching the JSON data:', error));
+};
+
+function href(){
+    window.location.href = "detail.html"
+}
+
+// <img src="http://192.168.0.32/img/${member.img}" alt="${member.name}" ></dd>
