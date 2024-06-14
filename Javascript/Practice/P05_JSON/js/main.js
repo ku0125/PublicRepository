@@ -1,7 +1,7 @@
 // JSON処理
 
 // 出力準備
-let output = document.getElementById('item-list')
+let output = document.getElementsByClassName('item-list')
 
 window.onload = function list() {
     // データの取得（非同期通信）

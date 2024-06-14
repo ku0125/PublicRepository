@@ -19,7 +19,7 @@ window.onload = function list() {
                 // (配列).indexOf(キー)で配列の番号が取ってこれるらしい！
                 // onclickで画面遷移を利用
                 let outHtml = `
-                <button class='item-detail' onclick="href(${json.members.indexOf(member)})" ontouchstart="href(${json.members.indexOf(member)})">
+                <div class='item-detail' onclick="href(${json.members.indexOf(member)})" ontouchstart="href(${json.members.indexOf(member)})">
                 <img src="../img/${member.img}" alt="${member.name}" ></dd>
                 <h2>${member.name}</h2>
                 </div></a>
