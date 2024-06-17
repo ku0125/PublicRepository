@@ -1,5 +1,5 @@
 // クラスについて
-// コンストラクタ2編
+// クラスメソッド編
 
 // 出力先の要素を習得
 let output = document.getElementById('output')
@@ -7,6 +7,15 @@ let output = document.getElementById('output')
 // クラスの宣言
 class Fan {
     // プロパティ
+    
+    // クラスプロパティ
+    // 台数
+    static number = 0
+
+    // クラス定数
+    // windPowerの日本語名称の統一用定数
+    static POWER_STATUS = {OFF:'切', P1:'弱',P2:'中',P3:'強'}
+
     // 羽根の枚数
     blades
     // 風力
@@ -18,13 +27,22 @@ class Fan {
     // 状態の出力先
     output
 
+    // クラスメソッド
+    // オブジェクト(this)にアクセス不可
+    // 扇風機の統計情報の表示
+    static infoFans(){
+        this.output.innerHTML += `扇風機の台数は全部で${Fan.number}台です。`
+    }
+
     // コンストラクタ(メソッド)の宣言
-    // 汎用性をもたせる (引数とデフォルト引数を利用)
     constructor(output,blades=5) {
+        // 扇風機の台数に一台追加        
+        Fan.number++
+
         // 各値を初期化
         this.output = output
         this.blades = blades
-        this.windPower = 0
+        this.windPower = Fan.POWER_STATUS.OFF
         this.power = false
         this.swing = false
     }
@@ -39,17 +57,22 @@ class Fan {
 }
 
 // インスタンス化
-// 羽根の枚数指定なし
+// 羽根の枚数を指定なし
 let fan01 = new Fan(output)
-// 羽根の枚数指定あり
+// 羽根の枚数を指定あり
 let fan02 = new Fan(output,7)
 
 output.innerHTML += fan01.swing + '<br>'
 // fan01のメソッドの呼び出し
 fan01.pressSwingButton() + '<br>'
 output.innerHTML += fan01.swing + '<br>'
+output.innerHTML += fan01.blades + '<br>'
 
 output.innerHTML += fan02.swing + '<br>'
 // fan02のメソッドの呼び出し
 fan02.pressSwingButton() + '<br>'
 output.innerHTML += fan02.swing + '<br>'
+output.innerHTML += fan02.blades + '<br>'
+
+// 扇風機の統計情報の表示
+Fan.infoFans()
