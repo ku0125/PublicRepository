@@ -1,5 +1,5 @@
 // クラスについて
-// メソッド編
+// コンストラクタ2編
 
 // 出力先の要素を習得
 let output = document.getElementById('output')
@@ -18,13 +18,20 @@ class Fan {
     // 状態の出力先
     output
 
-    // メソッド(関数)
+    // コンストラクタ(メソッド)の宣言
+    // 汎用性をもたせる (引数とデフォルト引数を利用)
+    constructor(output,blades=5) {
+        // 各値を初期化
+        this.output = output
+        this.blades = blades
+        this.windPower = 0
+        this.power = false
+        this.swing = false
+    }
 
-    // 首振りボタンが押された時
-    // 引数、戻り値無しのメソッド
-    // 関数とは違いfunctionは書かなくて良い
-    // thisは自分自身(オブジェクト(インスタンス))を示す
-    pressSwingButton() {
+    // メソッド(関数)
+    // 首振りボタン押下
+    pressSwingButton(){
         output.innerHTML += '首振りボタンが押されました。' + '<br>'
         this.swing = true
     }
@@ -32,9 +39,10 @@ class Fan {
 }
 
 // インスタンス化
-// 呼び出した分だけ実体がある
-let fan01 = new Fan()
-let fan02 = new Fan()
+// 羽根の枚数指定なし
+let fan01 = new Fan(output)
+// 羽根の枚数指定あり
+let fan02 = new Fan(output,7)
 
 output.innerHTML += fan01.swing + '<br>'
 // fan01のメソッドの呼び出し
