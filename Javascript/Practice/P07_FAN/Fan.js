@@ -23,6 +23,10 @@ export default class Fan {
     #blades
     // 風力
     #windPower
+
+    // 前回の風力
+    #lastWindPower
+
     // 電源
     #power
     // 首振り
@@ -45,6 +49,37 @@ export default class Fan {
         Fan.#output.innerHTML += `扇風機の台数は全部で${Fan.#number}台です。`
     }
 
+    // 扇風機のすべての電源を入れる
+
+    static allFanOn() {
+        Object.values(Fan.fanList).forEach(fan => {
+            // 電源を入れる
+            fan.#power = true
+
+            // 前回の風力が切の場合は弱にする
+            if (fan.#lastWindPower === Fan.#POWER_STATUS.OFF) {
+                fan.#windPower = Fan.#POWER_STATUS.P1
+            } else {
+                // 前回の風力を参照して再設定
+                fan.#windPower = fan.#lastWindPower
+            }
+            fan.infoView()
+        })
+        console.log(Fan.#fanList)
+    }
+
+    // 扇風機のすべての電源を消す
+    static allFanOff() {
+        Object.values(Fan.fanList).forEach(fan => {
+            // 現在の風力を参照して変数を保持する処理を追加
+            fan.#lastWindPower = fan.#windPower
+            fan.#power = false
+            fan.#windPower = Fan.#POWER_STATUS.OFF
+            fan.infoView()
+        })
+        console.log(Fan.#fanList)
+    }
+
     // コンストラクタ(メソッド)の宣言
     constructor(deviceOutput, blades = 5) {
         // 扇風機の台数に一台追加        
@@ -55,6 +90,7 @@ export default class Fan {
         this.#deviceOutput = deviceOutput
         this.#blades = blades
         this.#windPower = Fan.#POWER_STATUS.OFF
+        this.#lastWindPower = ''
         this.#power = false
         this.#swing = false
 
@@ -78,6 +114,7 @@ export default class Fan {
         Fan.#output.appendChild(block)
 
         // 切ボタン生成
+
         createFanBtn(Fan.#POWER_STATUS.OFF, () => this.pressPowerButton(Fan.#POWER_STATUS.OFF), block)
         // 弱ボタン生成
         createFanBtn(Fan.#POWER_STATUS.P1, () => this.pressPowerButton(Fan.#POWER_STATUS.P1), block)
@@ -87,6 +124,15 @@ export default class Fan {
         createFanBtn(Fan.#POWER_STATUS.P3, () => this.pressPowerButton(Fan.#POWER_STATUS.P3), block)
         // 首振りボタン生成
         createFanBtn('首振り', () => this.pressSwingButton(), block)
+        // 削除ボタン生成
+        createFanBtn('削除', () => {
+            console.log(`扇風機${this.#serialNumber}を削除します。`)
+            Fan.#output.removeChild(block)
+            delete Fan.#fanList[this.#serialNumber]
+            console.log(Fan.#fanList)
+            console.log(Object.values(Fan.fanList))
+
+        }, block)
 
         // 情報表示
         this.infoView()
@@ -95,6 +141,8 @@ export default class Fan {
         // どういう意味？
         Fan.#fanList[this.#serialNumber] = this
 
+        console.log(Fan.fanList)
+        console.log(Object.values(Fan.fanList))
     }
 
     // メソッド(関数)
@@ -104,28 +152,31 @@ export default class Fan {
         console.log(`パワーボタン『${btnName}』が押されました。`)
         switch (btnName) {
             case Fan.#POWER_STATUS.OFF:
+                // 現在の風力を参照して変数を保持する処理を追加
+                this.#lastWindPower = this.#windPower
+
                 // 風力0
-                this.#windPower = '切'
+                this.#windPower = Fan.#POWER_STATUS.OFF
                 // 電源OFF
                 this.#power = false
                 break;
             case Fan.#POWER_STATUS.P1:
                 // 風力1
-                this.#windPower = '弱'
+                this.#windPower = Fan.#POWER_STATUS.P1
                 // 電源ON
                 this.#power = true
 
                 break;
             case Fan.#POWER_STATUS.P2:
                 // 風力2
-                this.#windPower = '中'
+                this.#windPower = Fan.#POWER_STATUS.P2
                 // 電源ON
                 this.#power = true
 
                 break;
             case Fan.#POWER_STATUS.P3:
                 // 風力3
-                this.#windPower = '強'
+                this.#windPower = Fan.#POWER_STATUS.P3
                 // 電源ON
                 this.#power = true
 
@@ -145,16 +196,18 @@ export default class Fan {
         this.infoView()
     }
 
+
+
     // 状態確認
     infoView() {
         this.#deviceOutput.innerHTML = `
+シリアルナンバー：${this.#serialNumber}<br>
 羽根の枚数：${this.#blades}<br>
 風力：${this.#windPower}<br>
 電源：${this.#power}<br>
 首振り：${this.#swing}<br>
 TimeStamp:${new Date().toLocaleString('ja-JP')}<br>        `
     }
-
 }
 
 function createFanBtn(value, handler, parent) {
@@ -174,3 +227,5 @@ function createFanBtn(value, handler, parent) {
     // ボタンをblockの子要素に追加
     parent.appendChild(btn)
 }
+
+
