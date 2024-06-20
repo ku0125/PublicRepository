@@ -71,8 +71,12 @@ export default class Fan {
     // 扇風機のすべての電源を消す
     static allFanOff() {
         Object.values(Fan.fanList).forEach(fan => {
-            // 現在の風力を参照して変数を保持する処理を追加
-            fan.#lastWindPower = fan.#windPower
+
+            // 既に切状態の際は前回の風力を更新しないようにする
+            if (fan.#windPower !== Fan.#POWER_STATUS.OFF) {
+                // 現在の風力を参照して変数を保持する処理を追加
+                fan.#lastWindPower = fan.#windPower
+            }
             fan.#power = false
             fan.#windPower = Fan.#POWER_STATUS.OFF
             fan.infoView()
@@ -90,7 +94,7 @@ export default class Fan {
         this.#deviceOutput = deviceOutput
         this.#blades = blades
         this.#windPower = Fan.#POWER_STATUS.OFF
-        this.#lastWindPower = ''
+        this.#lastWindPower = Fan.#POWER_STATUS.OFF
         this.#power = false
         this.#swing = false
 
@@ -127,8 +131,14 @@ export default class Fan {
         // 削除ボタン生成
         createFanBtn('削除', () => {
             console.log(`扇風機${this.#serialNumber}を削除します。`)
+            // #outputの子要素であるblockを削除
             Fan.#output.removeChild(block)
+            // 扇風機を管理オブジェクトから削除
+            // サブルーチン化の目安 1行程度なら中でもよい
+            // メリット→使い回せる 同じ処理が多く出てくる場合はサブルーチン化してもよい
             delete Fan.#fanList[this.#serialNumber]
+
+            確認用
             console.log(Fan.#fanList)
             console.log(Object.values(Fan.fanList))
 
@@ -152,8 +162,11 @@ export default class Fan {
         console.log(`パワーボタン『${btnName}』が押されました。`)
         switch (btnName) {
             case Fan.#POWER_STATUS.OFF:
-                // 現在の風力を参照して変数を保持する処理を追加
-                this.#lastWindPower = this.#windPower
+                // 既に切状態の際は前回の風力を更新しないようにする
+                if (this.#windPower !== Fan.#POWER_STATUS.OFF) {
+                    // 現在の風力を参照して変数を保持する処理を追加
+                    this.#lastWindPower = this.#windPower
+                }
 
                 // 風力0
                 this.#windPower = Fan.#POWER_STATUS.OFF
