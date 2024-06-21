@@ -1,3 +1,5 @@
+import Cart from "./Cart.js";
+
 // JSON処理
 
 // 出力準備
@@ -55,39 +57,10 @@ function detail(data) {
     document.getElementById('detail-img').alt = product.name;
     document.getElementById('detail-description').textContent = product.detail;
     // カートに入れるボタンのリンクを作成
-    document.getElementById('detail-buy').addEventListener('click',  () => addToCart(index))
+    document.getElementById('detail-buy').addEventListener('click',  () => Cart.addToCart(index))
 
 }
 
-function addToCart(index) {
-    let storedData = sessionStorage.getItem('products');
-    if (storedData) {
-        let data = JSON.parse(storedData);
-        const product = data.products[index];
-        console.log(product);
-        // Cart.addItem(product);
-        alert('カートに追加しました');
-    } else {
-        fetch('../data/data.json')
-            .then(response => response.json())
-            .then(data => {
-                // データをsessionStorageに保存
-                sessionStorage.setItem('products', JSON.stringify(data));
-
-                // 再度sessionStorageからデータを取得
-                let storedData = sessionStorage.getItem('products');
-                if (storedData) {
-                    let data = JSON.parse(storedData);
-                    const product = data.products[index];
-                    console.log(product);
-
-                    // Cart.addItem(product);
-                    alert('カートに追加しました');
-                }
-            })
-            .catch(error => console.error('Error fetching the JSON data:', error));
-    }
-}
 
 // イキった戻るボタン
 document.getElementById('back-button').addEventListener('click', () => {
