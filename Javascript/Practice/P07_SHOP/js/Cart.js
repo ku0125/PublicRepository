@@ -24,17 +24,6 @@ export default class Cart {
     static #itemNumber = 0
 
     // 配列を直接操作するので存在する要素のプロパティは持たなくてよい
-    // // 商品名
-    // #itemName
-
-    // // 個数
-    // #itemQuantity
-
-    // // 価格
-    // #price
-
-    // // 画像
-    // #img
 
     // 全商品のオブジェクトリスト取得
     static get itemList() {
@@ -49,22 +38,6 @@ export default class Cart {
 
     // 直接送る形式にしたのでなくす
     // JSONのファイルを取得
-
-    // static JSONFetch(itemid) {
-    //     fetch('../data/data.json')
-    //         .then(Response => Response.json())
-    //         .then(data => {
-    //             // 動作確認用のlog
-    //             console.log(data)
-    //             this.itemName = data.products[itemid].name
-    //             this.price = data.products[itemid].name
-    //             this.itemQuantity++
-    //                 ;
-    //         })
-    //         // エラー起きたときの処理 書かなくてもいい
-    //         .catch(error => console.error('Error fetching the JSON data:', error));
-    // }
-
 
     // メソッド:商品追加 
     static addItem(product) {
@@ -92,7 +65,7 @@ export default class Cart {
         // ショッピングカートの内容が更新されました。通知
         console.log("ショッピングカートの内容が更新されました。")
 
-        console.log(Cart.#itemList)
+        // console.log(Cart.#itemList)
 
 
 
@@ -225,35 +198,7 @@ export default class Cart {
                 .catch(error => console.error('Error fetching the JSON data:', error));
         }
     }
-    // カートはひとつなのでインスタンスの生成は不要
 
-    // // コンストラクタ(メソッド)の宣言
-    // constructor() {
-
-    //     // カートのアイテム数を一個追加        
-    //     Cart.#number++
-    //     this.#itemNumber = Cart.#number
-
-    //     // 各値を初期化
-    //     this.#itemName = ''
-    //     this.#itemQuantity = 0
-    //     this.#price = 0
-    //     this.#img = ''
-
-
-    //     // 出力はカートのページで行うので今回は不要
-    //     // if (Cart.#output == undefined) {
-    //     //     Cart.#output = document.getElementById('output')
-    //     // }
-
-    //     Cart.#itemList[this.#itemNumber] = this
-
-    //     // console.log(Cart.itemList)
-    //     // console.log(Object.values(Cart.itemList))
-
-    // }
-
-    // メソッド(関数)
 
 
 }

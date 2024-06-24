@@ -7,7 +7,7 @@ const cartItem = document.getElementById('cart-items');
 // DOMContentLoadedイベントを使用して、DOMが完全に読み込まれた後にコードを実行
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log(Cart.GetitemList())
+    // console.log(Cart.GetitemList())
 
     Cart.listItem(cartItem,false)
     subtotal.innerHTML = `<h2>合計金額:${Cart.getTotal()}円`

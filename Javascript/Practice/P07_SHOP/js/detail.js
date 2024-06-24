@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // sessionStorageにデータがある場合、それを使用
         let data = JSON.parse(storedData);
         // 動作確認用のlog
-        console.log(data)
+        // console.log(data)
         //関数detailに受け取ったjsonを渡す 
         detail(data);
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 // データをsessionStorageに保存
                 sessionStorage.setItem('products', JSON.stringify(data));
-                console.log(data)
+                // console.log(data)
                 detail(data);
             })
             .catch(error => console.error('Error fetching the JSON data:', error));
