@@ -44,16 +44,15 @@ export default class Cart {
 
         // あとで数量の処理を追加したい（願望）
 
-        // // 既存の商品の場合は数量を1追加
-        // const existingItem = ;
-        // if (existingItem) {
-        //     existingItem.quantity++;
-        // } else {
-        //     // 新規の商品の場合は新しくquantity要素を追加し1を足す
-        //       });
-        // }
-        Cart.#itemNumber++
-        Cart.#itemList[this.#itemNumber] = product
+        // 既存の商品の場合は数量を1追加
+        const existingItem = Object.values(Cart.#itemList).find(item => item.name === product.name);
+        if (existingItem) {
+            existingItem.quantity++;
+        } else {
+            // 新規の商品の場合は新しくquantity要素を追加し1を足す
+            product.quantity = 1;
+            Cart.#itemList[product.name] = product;
+        }
 
         // sessionStorageにカートのデータを置く
         // sessionStorage.setItemは書式 持ってくるときはgetItem 消すときはRemoveItem
@@ -78,9 +77,12 @@ export default class Cart {
 
     // メソッド:商品数量変更
     static updateQuantity(productName, quantity) {
-        this.updateCart();
+        if (Cart.#itemList[productName]) {
+            Cart.#itemList[productName].quantity = quantity;
+            sessionStorage.setItem('cartItems', JSON.stringify(Cart.#itemList));
+            this.updateCart();
+        }
     }
-    // 今回はいらないので省略
 
     // 商品購入時に動かす 
     // メソッド:カート全消去
@@ -103,8 +105,8 @@ export default class Cart {
         const storedItems = JSON.parse(sessionStorage.getItem('cartItems'));
 
         // 個数なんてものはない 
-        // return Object.values(this.#itemList).reduce((total, item) => total + item.price * item.quantity, 0) * this.#tax;
-        return Math.ceil(Object.values(storedItems).reduce((total, item) => total + item.price, 0) * this.#tax);
+        return Math.ceil(Object.values(storedItems).reduce((total, item) => total + item.price * item.quantity, 0) * this.#tax);
+        // return Math.ceil(Object.values(storedItems).reduce((total, item) => total + item.price, 0) * this.#tax);
     }
 
     // メソッド:商品一覧表示 
@@ -112,7 +114,7 @@ export default class Cart {
         // sessionStorageに置いてたカートのデータを持ってくる
         const storedItems = JSON.parse(sessionStorage.getItem('cartItems'));
         if (storedItems) {
-            Cart.displayProducts(Object.values(storedItems), parent, button);
+            Cart.displayProducts(Object.values(storedItems), parent, button,true);
         }
     }
 
@@ -127,13 +129,19 @@ export default class Cart {
 
 
     // 商品情報を表示する関数
-    static displayProducts(products, parent, button) {
+    static displayProducts(products, parent, button, total) {
         products.forEach((product, index) => {
             // 商品情報を表示するdiv要素を作成
             const productDiv = document.createElement('div');
             productDiv.classList.add("product-item");
-            productDiv.innerHTML = `<img id="detail-img" src="../img/${product.img}" alt="${product.name}"><p>${product.name}</p><p>${product.price}円</p>`;
 
+            if (total == true) {
+                productDiv.innerHTML = `<img id="detail-img" src="../img/${product.img}" alt="${product.name}"><p>${product.name}</p><p>${product.price}円</p><p>数量:${product.quantity}</p><p>小計:${product.price * product.quantity}円</p>`;
+
+            } else {
+                productDiv.innerHTML = `<img id="detail-img" src="../img/${product.img}" alt="${product.name}"><p>${product.name}</p><p>${product.price}円</p>`;
+
+            }
             if (button == true) {
                 // 詳細を見るボタンを作成
                 Cart.createItemButton("詳細を見る", () => Cart.viewDetail(index), productDiv);

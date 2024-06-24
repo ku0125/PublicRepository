@@ -1,35 +1,39 @@
-import cart from './Cart.js';
+import Cart from "./Cart.js";
 
+// 出力先の要素を取得
+const productList = document.getElementById('product-list');
+const cartElement = document.getElementById('cart');
+
+// DOMContentLoadedイベントを使用して、DOMが完全に読み込まれた後にコードを実行
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('../data/data.json')
-    .then(response => response.json())
-    .then(data => {
-      const productList = document.getElementById('product-list');
-      data.products.forEach((product, index) => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
-        productDiv.innerHTML = `
-          <img src="../img/${product.img}" alt="${product.name}">
-          <h2>${product.name}</h2>
-          <p>${product.price}円</p>
-          <button onclick="viewDetail(${index})">詳細を見る</button>
-          <button onclick="addToCart(${index})">カートに入れる</button>
-        `;
-        productList.appendChild(productDiv);
-      });
-    });
+    updateCartDisplay();
+    loadProducts();
 });
 
-function viewDetail(productIndex) {
-  window.open(`detail.html?index=${productIndex}`, '_blank');
+function loadProducts() {
+    let storedData = sessionStorage.getItem('products');
+    if (storedData) {
+        // sessionStorageにデータがある場合、それを使用
+        let data = JSON.parse(storedData);
+        Cart.displayProducts(data.products, productList, true);
+    } else {
+        // sessionStorageにデータがない場合、fetchして保存
+        fetch('../data/data.json')
+            .then(response => response.json())
+            .then(data => {
+                // データをsessionStorageに保存
+                sessionStorage.setItem('products', JSON.stringify(data));
+                Cart.displayProducts(data.products, productList, true);
+            })
+            .catch(error => console.error('Error fetching the JSON data:', error));
+    }
 }
 
-function addToCart(productIndex) {
-  fetch('../data/data.json')
-    .then(response => response.json())
-    .then(data => {
-      const product = data.products[productIndex];
-      cart.addItem(product);
-      alert('カートに追加しました');
+function updateCartDisplay() {
+    cartElement.innerHTML = `カート`;
+
+    // カートに商品が追加されたときにカート表示を更新
+    document.addEventListener('cartUpdated', () => {
+        cartElement.innerHTML = `カート`;
     });
 }

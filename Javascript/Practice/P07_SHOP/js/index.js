@@ -6,42 +6,48 @@ const cartElement = document.getElementById('cart');
 
 // DOMContentLoadedイベントを使用して、DOMが完全に読み込まれた後にコードを実行
 document.addEventListener('DOMContentLoaded', () => {
-    // sessionStorageからデータを取得
-    updateCartDisplay();
-    let storedData = sessionStorage.getItem('products');
-
-    if (storedData) {
-        // sessionStorageにデータがある場合、それを使用
-        let data = JSON.parse(storedData);
-        Cart.displayProducts(data.products, productList, true);
-    } else {
-        // sessionStorageにデータがない場合、fetchして保存
-        fetch('../data/data.json')
-            .then(response => response.json())
-            .then(data => {
-                // データをsessionStorageに保存
-                sessionStorage.setItem('products', JSON.stringify(data));
-                Cart.displayProducts(data.products, productList, true);
-            })
-            .catch(error => console.error('Error fetching the JSON data:', error));
-    }
+  updateCartDisplay();
+  loadProducts();
 });
 
+function loadProducts() {
+  let storedData = sessionStorage.getItem('products');
+  if (storedData) {
+    let data = JSON.parse(storedData);
+    Cart.displayProducts(data.products, productList, true, false);
+  } else {
+    fetch('../data/data.json')
+      .then(response => response.json())
+      .then(data => {
+        sessionStorage.setItem('products', JSON.stringify(data));
+        Cart.displayProducts(data.products, productList, true, false);
+      })
+      .catch(error => console.error('Error fetching the JSON data:', error));
+  }
+}
+
 function updateCartDisplay() {
+  const storedItems = JSON.parse(sessionStorage.getItem('cartItems')) || {};
+  const totalQuantity = Object.values(storedItems).reduce((sum, item) => sum + item.quantity, 0);
 
     cartElement.innerHTML = `
-      <a href="confirm.html">
-        カート
-      </a>
+        カート(${totalQuantity})
     `;
+
 }
 
 // DOMContentLoadedイベントでカート表示を初期化
 document.addEventListener('DOMContentLoaded', () => {
 
-  });
-  
-  // カートに商品が追加されたときにカート表示を更新
-  document.addEventListener('cartUpdated', () => {
-    updateCartDisplay();
-  });
+});
+
+cartElement.addEventListener('click', () => {
+  window.location.href = 'confirm.html';
+});
+
+// カートに商品が追加されたときにカート表示を更新
+document.addEventListener('cartUpdated', () => {
+  updateCartDisplay();
+});
+
+
