@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>商品詳細</title>
-  <link rel="stylesheet" href="../css/detail.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳細</title>
+    <link rel="stylesheet" href="../css/detail.css">
 </head>
 <body>
-  <h1>商品詳細</h1>
-  <div id="product-detail"></div>
-  <button onclick="addToCart()">カートに入れる</button>
-  <script type="module" src="../js/detail.js"></script>
+    <div id="item-detail">
+        <h2 id="detail-name"></h2>
+        <p id="detail-price"></p>
+        <img id="detail-img" src="" alt="">
+        <p id="detail-description"></p>
+        <input type="button" id="detail-buy" value="カートに入れる">
+        <button id="back-button">Back</button>
+    </div>
+    <script type="module" src="../js/detail.js"></script>
 </body>
 </html>

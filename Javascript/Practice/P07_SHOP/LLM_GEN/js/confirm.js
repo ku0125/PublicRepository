@@ -1,16 +1,14 @@
 import Cart from "./Cart.js";
 
-// 出力先の要素を取得
-const subtotal = document.getElementById('subtotal-amount');
-const cartItem = document.getElementById('cart-items');
-
-// DOMContentLoadedイベントを使用して、DOMが完全に読み込まれた後にコードを実行
 document.addEventListener('DOMContentLoaded', () => {
-    Cart.listItem(cartItem, false);
-    subtotal.innerHTML = `合計金額: ${Cart.getTotal()}円`;
+    const subtotal = document.getElementById('subtotal-amount');
+    const cartItem = document.getElementById('cart-items');
+    const purchaseButton = document.getElementById('button-purchase');
+    const backButton = document.getElementById('back-button');
 
-    document.getElementById('button-purchase').addEventListener('click', () => Cart.buyItem());
-    document.getElementById('back-button').addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
+    Cart.listItem(cartItem, false);
+    subtotal.innerHTML = `合計金額:${Cart.getTotal()}円`;
+
+    purchaseButton.addEventListener('click', Cart.buyItem);
+    backButton.addEventListener('click', () => window.location.href = 'index.html');
 });

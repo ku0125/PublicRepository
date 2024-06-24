@@ -1,32 +1,33 @@
 import Cart from "./Cart.js";
 
-// 出力準備
-const output = document.getElementById('item-list');
-
-// GETパラメータの取得
-const url = new URL(window.location.href);
-const params = url.searchParams;
-const index = params.get('index');
-
-// DOMContentLoadedイベントを使用して、DOMが完全に読み込まれた後にコードを実行
 document.addEventListener('DOMContentLoaded', () => {
-    let storedData = sessionStorage.getItem('products');
-    if (storedData) {
-        let data = JSON.parse(storedData);
-        displayDetail(data);
-    } else {
-        fetch('../data/data.json')
-            .then(response => response.json())
-            .then(data => {
-                sessionStorage.setItem('products', JSON.stringify(data));
-                displayDetail(data);
-            })
-            .catch(error => console.error('Error fetching the JSON data:', error));
-    }
+    const url = new URL(window.location.href);
+    const index = url.searchParams.get('index');
+
+    loadProductDetails(index);
 });
 
-function displayDetail(data) {
-    const product = data.products[index];
+function loadProductDetails(index) {
+    const storedData = sessionStorage.getItem('products');
+    if (storedData) {
+        const data = JSON.parse(storedData);
+        displayProductDetails(data.products[index]);
+    } else {
+        fetchAndDisplayProductDetails(index);
+    }
+}
+
+function fetchAndDisplayProductDetails(index) {
+    fetch('../data/data.json')
+        .then(response => response.json())
+        .then(data => {
+            sessionStorage.setItem('products', JSON.stringify(data));
+            displayProductDetails(data.products[index]);
+        })
+        .catch(error => console.error('Error fetching the JSON data:', error));
+}
+
+function displayProductDetails(product) {
     document.getElementById('detail-name').textContent = product.name;
     document.getElementById('detail-price').textContent = `価格: ${product.price}円`;
     document.getElementById('detail-img').src = `../img/${product.img}`;
@@ -34,7 +35,5 @@ function displayDetail(data) {
     document.getElementById('detail-description').textContent = product.detail;
 
     document.getElementById('detail-buy').addEventListener('click', () => Cart.addToCart(index));
-    document.getElementById('back-button').addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
+    document.getElementById('back-button').addEventListener('click', () => window.location.href = 'index.html');
 }
