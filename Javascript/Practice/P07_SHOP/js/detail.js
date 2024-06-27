@@ -17,6 +17,10 @@ let index = params.get('index')
 // 取得しているJSONを用意
 let storedData = sessionStorage.getItem('products');
 
+// カート
+let cart
+
+
 document.addEventListener('DOMContentLoaded', () => {
     if (storedData) {
         // sessionStorageにデータがある場合、それを使用
@@ -39,12 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error fetching the JSON data:', error));
 
     }
+
+
 });
 
 
 // JSONデータを引数に受け取ってDOM操作を行う関数を作成
 
 function detail(data) {
+
+
     // indexで送ってきた配列番号を指定する
     // constのほうがいいらしい
     const product = data.products[index];
@@ -56,13 +64,16 @@ function detail(data) {
     document.getElementById('detail-img').src = `../img/${product.img}`;
     document.getElementById('detail-img').alt = product.name;
     document.getElementById('detail-description').textContent = product.detail;
-    // カートに入れるボタンのリンクを作成
-    document.getElementById('detail-buy').addEventListener('click',  () => Cart.addToCart(index))
+// カートに入れるボタンのリンクを作成
+document.getElementById('detail-buy').addEventListener('click', () => {
+    Cart.addToCart(index)
+    window.close()
+  });
 
 }
 
 
-// イキった戻るボタン
-document.getElementById('back-button').addEventListener('click', () => {
-    window.location.href = 'index.html';
+// イキった閉じるボタン
+document.getElementById('close-button').addEventListener('click', () => {
+    window.close();
 });

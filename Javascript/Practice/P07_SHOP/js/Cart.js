@@ -114,7 +114,7 @@ export default class Cart {
         // sessionStorageに置いてたカートのデータを持ってくる
         const storedItems = JSON.parse(sessionStorage.getItem('cartItems'));
         if (storedItems) {
-            Cart.displayProducts(Object.values(storedItems), parent, button,true);
+            Cart.displayProducts(Object.values(storedItems), parent, button, true);
         }
     }
 
@@ -125,6 +125,10 @@ export default class Cart {
         window.location.href = 'complete.html';
         this.clearCart();
         this.updateCart();
+    }
+
+    constructor(itemList = []) {
+        this.itemList = itemList
     }
 
 
@@ -173,11 +177,23 @@ export default class Cart {
 
     // 詳細を見るリンク
     static viewDetail(index) {
-        window.location.href = `detail.html?index=${index}`;
+        window.open(`detail.html?index=${index}`);
     }
 
     // カートに入れるボタン
     static addToCart(index) {
+        let cart
+
+        if (window.sessionStorage.getItem('cartItems')) {
+            // cartItemsの中が存在する時
+            // カートのインスタンス化(cartItems(文字列)を取得し、これをオブジェクトに変換してCartクラスのコンストラクタの引数に渡している。)
+            cart = new Cart(JSON.parse(window.sessionStorage.getItem('cartItems')))
+        } else {
+            // cartItemsの中が存在しない時
+            // カートのインスタンス化
+            cart = new Cart()
+        }
+
         let storedData = sessionStorage.getItem('products');
         if (storedData) {
             let data = JSON.parse(storedData);
