@@ -11,7 +11,7 @@ CREATE TABLE
 -- INSERT INTO
 --     player_data
 -- VALUES
---     ('A-123-Z', 'キッチンペーパー', '大阪製紙', 248);
+--     ('A-123-Z', 'キッチンペーパー', '大阪府製紙', 248);
 -- csvファイルのインポート（ターミナル）
 -- .mode csv
 -- .import C:\Users\hit0037\Documents\git\PublicRepository\Database\P02_Summary\player_data.csv player_data
@@ -28,39 +28,38 @@ FROM
 
 -- 2. このクラスの身長の平均値を出力する
 SELECT
-    avg(height)
+    AVG(height)
 FROM
     player_data;
 
 -- 3. 身長が一番高い人の名前と身長を出力する
 SELECT
     name,
-    max(height)
+    MAX(height)
 FROM
     player_data;
 
 -- 4. 体重が一番軽い人の名前と体重を出力する
 SELECT
     name,
-    min(weight)
+    MIN(weight)
 FROM
     player_data;
 
 -- 5. 全員の体重の合計を出力する
 SELECT
-    sum(weight)
+    SUM(weight)
 FROM
     player_data;
 
 -- 6. 各人のBMIを計算して、名前とBMI値を出力する
 -- ※BMI = 体重 × 身長(m) × 身長(m)
-
 -- SQLite POW POWER使える
 -- 罠:SQLiteでは整数同士の除算は整数として結果が返ってくるため100を小数にして計算してやる必要がある
 -- 0.01を掛けてもよい
 SELECT
     name,
-    weight / POW(height / 100.0, 2) AS BMI 
+    weight / POW (height * 0.01, 2) AS BMI
 FROM
     player_data;
 
@@ -70,12 +69,11 @@ SELECT
 FROM
     player_data;
 
-    SELECT
+SELECT
     name,
-    ROUND(weight / ((height/100.0) * (height/100.0)), 2) AS BMI
+    ROUND(weight / ((height / 100.0) * (height / 100.0)), 2) AS BMI
 FROM
     player_data;
-
 
 -- personal_dataテーブルの作成
 CREATE TABLE
@@ -89,17 +87,54 @@ CREATE TABLE
         tel TEXT,
         mobile_tel TEXT,
         zip TEXT,
+        pref TEXT,
         address TEXT,
         credit TEXT,
         valid TEXT
     );
 
+DROP TABLE personal_data;
+
 -- csvファイルのインポート（ターミナル）
 -- .mode csv
--- .import C:\Users\hit0037\Documents\git\PublicRepository\Database\P01_SELECT\dummy.csv personal_data
-
+-- .import C:\Users\hit0037\Documents\git\PublicRepository\Database\P02_Summary\dummy02.csv personal_data
 -- csv見出しの削除
 DELETE FROM personal_data
 WHERE
     name = '氏名';
 
+-- 男性の平均年齢
+SELECT
+    avg(age) AS '平均年齢'
+FROM
+    personal_data
+GROUP BY
+    gender
+HAVING
+    gender = '男';
+
+-- テーブル：personal_data
+-- 東京都、大阪府、京都府、住んでいる人の人数を昇順にして表示
+-- カラム：都道府県、人数
+-- CASE WHEN THEN ENDを用いる
+SELECT
+    CASE
+        WHEN address LIKE '東京都%' THEN '東京都'
+        WHEN address LIKE '大阪府%' THEN '大阪府'
+        WHEN address LIKE '京都府%' THEN '京都府'
+    END AS '都道府県',
+    COUNT(*) AS '人数'
+FROM
+    personal_data
+WHERE
+    address LIKE '東京都%'
+    OR address LIKE '大阪府%'
+    OR address LIKE '京都府%'
+GROUP BY
+    CASE
+        WHEN address LIKE '東京都%' THEN '東京都'
+        WHEN address LIKE '大阪府%' THEN '大阪府'
+        WHEN address LIKE '京都府%' THEN '京都府'
+    END
+ORDER BY
+    '人数' ASC;
