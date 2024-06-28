@@ -142,3 +142,9 @@ FROM
     product_master
 WHERE
     name LIKE '%ペーパー';
+
+-- レコードの更新
+UPDATE product_master SET name = 'キッチンペーパー02' WHERE number = 'A-123-Z'
+
+-- レコードの削除
+DELETE FROM product_master WHERE number = 
