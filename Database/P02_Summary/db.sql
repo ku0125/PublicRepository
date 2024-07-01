@@ -103,9 +103,10 @@ DELETE FROM personal_data
 WHERE
     name = '氏名';
 
--- 男性の平均年齢
+-- 男性の平均年齢を出力してください。
+-- 表示するカラムは平均年齢を出力する式を『平均年齢』としてください。(別名を使ってください。)
 SELECT
-    avg(age) AS '平均年齢'
+    AVG(age) AS 平均年齢
 FROM
     personal_data
 GROUP BY
@@ -113,28 +114,50 @@ GROUP BY
 HAVING
     gender = '男';
 
+-- 東京都在住の女性の合計年齢を出力してください。
+-- 表示するカラムは合計年齢を出力する式を『合計年齢』としてください。(別名を使ってください。)
+SELECT
+    SUM(age) AS 合計年齢
+FROM
+    personal_data
+WHERE
+    pref = '東京都'
+    AND gender = '女';
+
 -- テーブル：personal_data
 -- 東京都、大阪府、京都府、住んでいる人の人数を昇順にして表示
 -- カラム：都道府県、人数
 -- CASE WHEN THEN ENDを用いる
 SELECT
-    CASE
-        WHEN address LIKE '東京都%' THEN '東京都'
-        WHEN address LIKE '大阪府%' THEN '大阪府'
-        WHEN address LIKE '京都府%' THEN '京都府'
-    END AS '都道府県',
-    COUNT(*) AS '人数'
+    pref AS 都道府県,
+    COUNT() AS 人数
 FROM
     personal_data
 WHERE
-    address LIKE '東京都%'
-    OR address LIKE '大阪府%'
-    OR address LIKE '京都府%'
+    pref IN ('東京都', '大阪府', '京都府')
 GROUP BY
-    CASE
-        WHEN address LIKE '東京都%' THEN '東京都'
-        WHEN address LIKE '大阪府%' THEN '大阪府'
-        WHEN address LIKE '京都府%' THEN '京都府'
-    END
+    pref
 ORDER BY
-    '人数' ASC;
+    COUNT() ASC;
+
+-- 全国の平均年齢以上の住んでいる人の人数を昇順にして表示してください。
+-- 表示するカラムはすべて日本語表記にしてください。
+-- 表示するカラムは人数を数えるカラムを『人数』として表示してください。
+SELECT
+    pref AS 都道府県,
+    COUNT() AS 人数
+FROM
+    personal_data
+WHERE
+    age >= (
+        SELECT
+            AVG(age)
+        FROM
+            personal_data
+    )
+GROUP BY
+    pref
+ORDER BY
+-- '人数'とすると並びがおかしくなる（？）
+-- エイリアス(AS)にシングルクォートは不要
+    人数 ASC;
