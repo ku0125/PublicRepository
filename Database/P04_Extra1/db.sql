@@ -126,18 +126,19 @@ HAVING
     AVG(results.score) <= 50;
 
 -- 試験結果テーブルの点数の右に、その教科の平均点を表示せよ。
-SELECT 
+SELECT
+    r.number AS 学籍番号,
     r.subject AS 教科,
     r.score AS 点数,
     avg_scores.平均点
-FROM 
+FROM
     results r
-JOIN (
-    SELECT 
-        subject,
-        AVG(score) AS 平均点
-    FROM 
-        results
-    GROUP BY 
-        subject
-) AS avg_scores ON r.subject = avg_scores.subject;
+    INNER JOIN (
+        SELECT
+            subject,
+            AVG(score) AS 平均点
+        FROM
+            results
+        GROUP BY
+            subject
+    ) AS avg_scores ON r.subject = avg_scores.subject;
