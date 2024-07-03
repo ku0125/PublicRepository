@@ -14,8 +14,9 @@ let output = document.getElementById('output')
 // 羽根の枚数を指定なし
 let fan01 = new Fan(output)
 // 羽根の枚数を指定あり
-let fan02 = new Fan(output,7)
+let fan02 = new Fan(output,6)
 
+// アクセサの呼び出し
 output.innerHTML += fan01.getSwing() + '<br>'
 // fan01のメソッドの呼び出し
 fan01.pressSwingButton() + '<br>'
@@ -27,6 +28,15 @@ output.innerHTML += fan02.getSwing() + '<br>'
 fan02.pressSwingButton() + '<br>'
 output.innerHTML += fan02.getSwing() + '<br>'
 output.innerHTML += fan02.getBlades() + '<br>'
+
+// バリデーションで弾かれる
+fan02.setBlades(-51)
+output.innerHTML += fan02.getBlades() + '<br>'
+
+// バリデーションでは弾かれない
+fan02.setBlades(8)
+output.innerHTML += fan02.getBlades() + '<br>'
+
 
 // 扇風機の統計情報の表示
 Fan.totalOutput = document.getElementById('output')
