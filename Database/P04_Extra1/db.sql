@@ -115,24 +115,23 @@ GROUP BY
 
 -- 教科ごとの試験の平均点が50点以下である教科を表示せよ。
 SELECT
-    results.subject AS 教科,
-    AVG(results.score) AS 平均点
+    subject AS 教科,
+    AVG(score) AS 平均点
 FROM
-    students
-    INNER JOIN results ON students.number = results.number
+    results
 GROUP BY
-    results.subject
+    subject
 HAVING
-    AVG(results.score) <= 50;
+    AVG(score) <= 50;
 
 -- 試験結果テーブルの点数の右に、その教科の平均点を表示せよ。
 SELECT
-    r.number AS 学籍番号,
-    r.subject AS 教科,
-    r.score AS 点数,
-    avg_scores.平均点
+    results.number AS 学籍番号,
+    results.subject AS 教科,
+    results.score AS 点数,
+    avg_results.平均点
 FROM
-    results r
+    results
     INNER JOIN (
         SELECT
             subject,
@@ -141,4 +140,4 @@ FROM
             results
         GROUP BY
             subject
-    ) AS avg_scores ON r.subject = avg_scores.subject;
+    ) AS avg_results ON results.subject = avg_results.subject;
