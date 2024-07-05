@@ -29,4 +29,3 @@ else:
 str01 = input("はい[Y]いいえ[N]\n>")
 str02 = "[Y]と入力された。" if str01 == "Y" else "[Y]以外が入力された。"
 print(str02)
-
