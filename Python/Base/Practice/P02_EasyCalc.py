@@ -1,7 +1,6 @@
 import tkinter as tk
 
 root = tk.Tk()
-
 root.title("電卓")
 root.geometry("500x500")
 
@@ -10,34 +9,34 @@ root.geometry("500x500")
 
 
 def add():
-    result = float(e1.get()) + float(e2.get())
-    result_label.config(text=f"{result}")
+    result = int(e1.get()) + int(e2.get())
+    result_label.config(text=f"結果:{result}")
 
 
 def sub():
-    result = float(e1.get()) - float(e2.get())
-    result_label.config(text=f"{result}")
+    result = int(e1.get()) - int(e2.get())
+    result_label.config(text=f"結果:{result}")
 
 
 def mul():
-    result = float(e1.get()) * float(e2.get())
-    result_label.config(text=f"{result}")
+    result = int(e1.get()) * int(e2.get())
+    result_label.config(text=f"結果:{result}")
 
 
 def div():
-    result = float(e1.get()) / float(e2.get())
-    result_label.config(text=f"{result}")
+    result = int(e1.get()) / int(e2.get())
+    result_label.config(text=f"結果:{result}")
 
 
 # 入力フォームのインスタンス化
-e1 = tk.Entry(bg="#FF0000")
+e1 = tk.Entry()
 # 入力フォームの設置
 e1.pack(anchor=tk.NW)
 
 print(type({e1.get()}))
 
 # 入力フォームのインスタンス化
-e2 = tk.Entry(bg="#FF0000")
+e2 = tk.Entry()
 # 入力フォームの設置
 e2.pack(anchor=tk.NW)
 
@@ -57,7 +56,8 @@ bt4.pack(anchor=tk.NW)
 # ラベルのインスタンス化
 result_label = tk.Label(text="")
 # ラベルの設置
-result_label.pack()
+result_label.pack(expand=True)
+
 
 # 表示開始
 root.mainloop()
