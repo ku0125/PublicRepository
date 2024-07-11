@@ -8,28 +8,13 @@
 # 3段階目、偏らない様に、全員が平等に出力されるようにしてください。
 # 4段階目、アプリケーションを終了しても、データを維持できるようにしてください。（データの読み込みと保存）
 
-# jsonを使う
-
-# 以下サンプルコード
-# print("プログラムを開始します")
-# endFlag = False
-# while not endFlag:
-#     print("選択してください。")
-#     print("[1]挨拶[2]自己紹介[0]終了")
-#     cmd = input()
-#     if cmd == "1":
-#         print("こんにちは")
-#     elif cmd == "2":
-#         print("どうも、コンソールアプリです。")
-#     elif cmd == "0":
-#         print("終了が選択されました。")
-#         endFlag = True
-#     else:
-#         print("正しいコマンドを入力してください。")
-# print("プログラムを終了します。")
 
 # 2段階目、登録した人からランダムに1人を出力してください。
+
 # randomをつかう
+# random.choiceでランダムに一つの要素を選んでくれるらしい
+# 一人を選択するボタン
+# 選択した結果を表示する関数
 
 import tkinter as tk
 import random
@@ -64,10 +49,8 @@ class RandomNameSelector:
         self.names_label = tk.Label(master, text="登録された名前:")
         self.names_label.pack(pady=10)
 
-        # 順番決定ボタン
-        self.pick_button = tk.Button(
-            master, text="一人選択", command=self.pick_random
-            )
+        # 一人を選択するボタン
+        self.pick_button = tk.Button(master, text="一人選択", command=self.pick_random)
         self.pick_button.pack()
 
         # 結果表示ラベル
@@ -101,7 +84,7 @@ class RandomNameSelector:
             self.show_message("警告", "名前が登録されていません")
             return
 
-        # random.choiceで当てられるらしい
+        # random.choiceでランダムに一つの要素を選んでくれるらしい
         picked_name = random.choice(self.names)
         # 結果を代入
         result_text = f"結果:{picked_name}"
@@ -109,7 +92,7 @@ class RandomNameSelector:
         self.result_label.config(text=result_text)
 
 
-# 単体で動作させるときのイディオムらしい
+# 単体で動作させるときのイディオム 12_Module/Main.py参照
 if __name__ == "__main__":
     root = tk.Tk()
     app = RandomNameSelector(root)
