@@ -113,6 +113,21 @@ class Robot:
 
 robot01 = Robot()
 robot01.name = "一号機"
-robot01.disp = lambda self: print(self.name)
 
-robot01.disp()
+
+def disp(self):
+    print(self.name)
+
+
+robot01.disp = disp
+robot01.disp2 = lambda self: print(self.name)
+
+robot01.disp(robot01)
+robot01.disp2(robot01)
+
+robot02 = Robot()
+robot02.name = "二号機"
+
+robot01.disp2(robot02)
+# robot02.dispは定義していないのでエラー
+# robot02.disp(robot02)
