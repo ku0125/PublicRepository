@@ -19,6 +19,7 @@
 import tkinter as tk
 import random
 import json
+import os
 
 
 # クラスをつかう
@@ -30,11 +31,11 @@ class RandomNameSelector:
         # メインウィンドウの設定
         self.master = master
         self.master.title("ランダムで当てるアプリ")
-        self.master.geometry("300x400")
+        self.master.geometry("300x800")
 
         # 名前、結果リストの読み込み、初期化
         self.names = self.load_names()
-        self.result = []
+        self.result = self.load_results()
 
         # GUI要素の作成と配置
         # 入力フォーム
@@ -63,8 +64,13 @@ class RandomNameSelector:
         self.result_label = tk.Label(master)
         self.result_label.pack(pady=10)
 
-        # 名前リストの更新（データを読み込んだ時）
+        # リセットボタンを追加
+        self.reset_button = tk.Button(master, text="リセット", command=self.reset_data)
+        self.reset_button.pack(pady=10)
+
+        # 名前・結果リストの更新（データを読み込んだ時）
         self.update_names_label()
+        self.update_result_label()
 
     # メソッド
     def register_name(self):
@@ -112,6 +118,11 @@ class RandomNameSelector:
         picked_name = random.choice(remaining_names)
         # 結果リストに名前を追加
         self.result.append(picked_name)
+        self.update_result_label()
+        # 結果をjsonに保存
+        self.save_results()
+
+    def update_result_label(self):
         # 結果を代入(番号をふる)
         result_text = "結果:\n" + "\n".join(
             f"{i + 1}. {name}" for i, name in enumerate(self.result)
@@ -135,6 +146,30 @@ class RandomNameSelector:
         with open("names.json", "w") as file:
             # json.dumpで書き込めるらしい　便利
             json.dump(self.names, file)
+
+    def load_results(self):
+        try:
+            with open("results.json", "r") as file:
+                return json.load(file)
+        except FileNotFoundError:
+            return []
+
+    def save_results(self):
+        with open("results.json", "w") as file:
+            json.dump(self.result, file)
+
+    def reset_data(self):
+        self.names = []
+        self.result = []
+        self.update_names_label()
+        self.update_result_label()
+        self.result_label.config(text="データがリセットされました")
+
+        # JSONファイルを削除
+        if os.path.exists("names.json"):
+            os.remove("names.json")
+        if os.path.exists("results.json"):
+            os.remove("results.json")
 
 
 # 単体で動作させるときのイディオム 12_Module/Main.py参照
