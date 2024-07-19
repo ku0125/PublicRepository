@@ -43,9 +43,14 @@ def getAll(scoped_ses: scoped_session):
 def update(scoped_ses: scoped_session):
     # セッション開始
     session = scoped_ses()
-    inputNo = input("IDを指定してください。")
+    inputNo = input("更新するIDを指定してください。\n>")
     # １件データ取得
     person = session.get(Person, inputNo)
+    if person is None:
+        print("存在しないIDが指定されました。")
+        # DB操作セッションの終了
+        session.close()
+        return
     dispRecord(person)
     name = input("名前を入力してください。\n>")
     if name != "":
@@ -58,7 +63,12 @@ def update(scoped_ses: scoped_session):
     age = numberRangeInput("年齢を入力してください。", 0, 150, True)
     if age != "":
         person.age = age
-    session.commit()
+    dispRecord(person)
+    if confirm("上記のデータで更新します。\nよろしいでしょうか？"):
+        session.commit()
+        print("更新が実行されました。")
+    else:
+        print("更新がキャンセルされました。")
     # DB操作セッションの終了
     session.close()
 
@@ -66,6 +76,21 @@ def update(scoped_ses: scoped_session):
 def delete(scoped_ses: scoped_session):
     # セッション開始
     session = scoped_ses()
+    inputNo = input("削除するIDを指定してください。\n>")
+    person = session.query(Person).filter(Person.id == inputNo)
+    if person.count() == 0:
+        print("存在しないIDが指定されました。")
+        # DB操作セッションの終了
+        session.close()
+        return
+    dispRecord(person.first())
+    if confirm("上記のデータを削除します。\nよろしいでしょうか？"):
+        person.delete()
+        session.commit()
+        print("削除が実行されました。")
+    else:
+        print("削除がキャンセルされました。")
+    session.commit()
 
 
 # 出力メソッドの定義
