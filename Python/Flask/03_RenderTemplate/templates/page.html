@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ページ</title>
+</head>
+
+<body>
+    <h1>サブページです。</h1>
+    <p>id:{{id}}</p>
+    <ul>
+        <!-- HTMLテンプレート上でURLを書く時はurl_for関数を利用する。 -->
+        <li>
+            <a href="{{url_for('page')}}">ページ</a>
+        </li>
+        <li>
+            <a href="{{url_for('pages',id=100)}}">ページす</a>
+        </li>
+        <li>
+            <a href="{{url_for('get',id=100)}}">GET</a>
+        </li>
+    </ul>
+</body>
+
+</html>

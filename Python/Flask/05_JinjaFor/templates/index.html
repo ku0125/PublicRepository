@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinja2-For</title>
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+    <ul>
+      {% for i in[5, 10, 15] %}
+        <li>{{i}}</li>
+      {% endfor %}
+    </ul>
+    <a href="{{url_for('index')}}">ホームへ</a>
+    <a href="{{url_for('next',var='メッセージ')}}">ネクストへ</a>
+  </body>
+</html>

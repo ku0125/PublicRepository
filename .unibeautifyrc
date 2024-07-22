@@ -1,0 +1,7 @@
+{
+  "HTML": {
+    "beautifiers": [
+      "Pretty Diff"
+    ]
+  }
+}
