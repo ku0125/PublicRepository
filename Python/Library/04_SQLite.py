@@ -13,7 +13,7 @@ con = sqlite3.connect("InputOutput/Person.db")
 # con.execute(sql)
 
 # レコード挿入
-# sql = "INSERT INTO person VALUES(1,'木内和也',1,35)"
+# sql = "INSERT INTO person VALUES(1,'山本太郎',1,35)"
 # con.execute(sql)
 
 # 全件取得

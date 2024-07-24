@@ -87,7 +87,6 @@ class Mobile:
 
 # CarExに人を乗せる機能を追加
 class Vehicle(CarEx, Mobile):
-
     def __init__(self, speed=0, number=0, driver="名無しさん"):
         CarEx.__init__(self, speed, number)
         Mobile.__init__(self, driver)
@@ -100,7 +99,7 @@ class Vehicle(CarEx, Mobile):
 vehicle01 = Vehicle()
 vehicle01.disp()
 
-vehicle02 = Vehicle(driver="木内")
+vehicle02 = Vehicle(driver="山本")
 vehicle02.disp()
 vehicle02.accel(15)
 vehicle02.disp()

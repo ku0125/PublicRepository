@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     # データベース操作
     # データの挿入
-    p1 = Person(name="木内", gender=1, age=32)
+    p1 = Person(name="山本", gender=1, age=32)
     ses.add(p1)
     ses.commit()
 
