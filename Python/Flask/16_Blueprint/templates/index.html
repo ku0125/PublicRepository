@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint</title>
+  </head>
+  <body>
+    <p>{{msg}}</p>
+    <h2>本体</h2>
+    <a href="{{ url_for('index' ) }}">ホーム</a>
+    <a href="{{ url_for('next' ) }}">ネクスト</a>
+    <h2>Blueprint</h2>
+    <a href="{{ url_for('APP2.index' ) }}">ホーム</a>
+    <a href="{{ url_for('APP2.next' ) }}">ネクスト</a>
+    <a href="{{ url_for('APP2.APP2A' ) }}">ネクスト</a>
+  </body>
+</html>

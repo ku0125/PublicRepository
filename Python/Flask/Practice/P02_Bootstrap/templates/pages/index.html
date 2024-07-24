@@ -1,0 +1,21 @@
+{% set title = "Bootstrap" %}
+{% set subTitle = "メインページ" %}
+{% extends 'layouts/layout.html' %}
+
+{% block head %}{% endblock head %}
+{% block header %}
+  {% include "blocks/header.html" %}
+{% endblock header %}
+{% block contents %}
+
+  <h1>Bootstrap</h1>
+  <h2>うごかします</h2>
+
+  <div class="alert alert-primary" role="alert">
+    うごいた
+  </div>
+
+{% endblock contents %}
+{% block footer %}
+  {% include "blocks/footer.html" %}
+{% endblock footer %}
