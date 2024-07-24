@@ -20,7 +20,15 @@ class LoginSystem(MethodView):
         id = request.form.get("id")
         pw = request.form.get("pw")
 
-        return render_template("pages/success.html", id=id, pw=pw)
+        if id == "test":
+            if pw == "test":
+                return render_template("pages/success.html")
+            else:
+                msg = "パスワードが違います。"
+                return render_template("pages/login.html", msg=msg)
+        else:
+            msg = "IDが違います。"
+            return render_template("pages/login.html", msg=msg)
 
 
 Login.add_url_rule("/", view_func=LoginSystem.as_view("login"))
