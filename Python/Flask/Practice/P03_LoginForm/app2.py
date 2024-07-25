@@ -1,10 +1,12 @@
 # MethodBase
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, session, url_for
 
 # Blueprintの名称：LoginSystem
 # モジュール名：LoginSystem
 # MethodBase
 from flask.views import MethodView
+from forms import InputForm
+
 
 # url_prefixがメインの階層になる
 Login = Blueprint("LoginSystem", __name__, url_prefix="/LoginSystem")
@@ -13,22 +15,28 @@ Login = Blueprint("LoginSystem", __name__, url_prefix="/LoginSystem")
 class LoginSystem(MethodView):
     # getでのアクセス時
     def get(self):
-        return render_template("pages/login.html")
+        form = InputForm()  # ここでフォームを初期化
+        return render_template("pages/login.html", form=form)
 
     # postでのアクセス時
     def post(self):
-        id = request.form.get("id")
-        pw = request.form.get("pw")
+        form = InputForm()
+        # POST
+        if form.validate_on_submit():
+            session["id"] = form.id.data
+            session["pw"] = form.pw.data
+            return redirect(url_for("LoginSystem.login"))
+        # GET
+        if "name" in session:
+            form.id.data = session["id"]
+        if "email" in session:
+            form.pw.data = session["pw"]
 
-        if id == "test":
-            if pw == "test":
-                return render_template("pages/success.html")
-            else:
-                msg = "パスワードが違います。"
-                return render_template("pages/login.html", msg=msg)
-        else:
-            msg = "IDが違います。"
-            return render_template("pages/login.html", msg=msg)
+        if session.get("id") == "test" and session.get("pw") == "test":
+            return render_template("pages/success.html")
+
+        # GETリクエストの場合、またはフォームの値がバリデーションを通過しなかった場合
+        return render_template("pages/login.html", form=form)
 
 
 Login.add_url_rule("/", view_func=LoginSystem.as_view("login"))

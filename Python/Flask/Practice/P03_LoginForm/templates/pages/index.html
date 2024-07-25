@@ -1,12 +1,20 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインシステム</title>
-  </head>
-  <body>
+{% set title = "ログインシステム" %}
+{% set subTitle = "トップページ" %}
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+  <h1>ログインシステム</h1>
+{% endblock %}
+
+{% block head %}{% endblock head %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+
     <h2>Login</h2>
     <a href="{{ url_for('LoginSystem.login' ) }}">ログイン画面</a>
-  </body>
-</html>
+
+{% endblock content %}
+{% block footer %}
+  {% include "blocks/footer.html" %}
+{% endblock footer %}

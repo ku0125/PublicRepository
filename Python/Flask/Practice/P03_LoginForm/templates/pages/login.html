@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MethodBase</title>
-  </head>
-  <body>
-    <form action="{{ url_for('LoginSystem.login') }}" method="post">
-      <input type="text" name="id" id="">
-      <input type="password" name="pw" id="">
-      <button type="submit">送信</button>
-    </form>
-  </body>
-</html>
+{% extends "layouts/base.html" %}
+
+{% set title = "ログインシステム" %}
+{% set subTitle = "ログインページ" %}
+
+{% block title %}
+  <h1>ログイン画面</h1>
+{% endblock %}
+
+{% block content %}
+  {% from "helpers/_formhelpers.html" import render_field %}
+  <form method="POST" novalidate="novalidate">
+    {{ form.csrf_token }}
+    {{ render_field(form.id) }}
+    {{ render_field(form.pw) }}
+    <br>
+    {{ form.submit() }}
+  </form>
+{% endblock %}
+{% block footer %}
+  {% include "blocks/footer.html" %}
+{% endblock footer %}

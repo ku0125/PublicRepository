@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, SubmitField
-from wtforms.validators import DataRequired, Email
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 
 # ==================================================
@@ -8,9 +8,9 @@ from wtforms.validators import DataRequired, Email
 # ==================================================
 # 入力クラス
 class InputForm(FlaskForm):
-    name = StringField("名前：", validators=[DataRequired("必須入力です")])
-    email = EmailField(
-        "メールアドレス：",
-        validators=[Email("メールアドレスのフォーマットではありません")],
+    id = StringField("ID：", validators=[DataRequired("必須入力です")])
+    pw = StringField(
+        "パスワード：",
+        validators=[DataRequired("必須入力です")],
     )
     submit = SubmitField("送信")

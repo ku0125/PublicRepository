@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8"/>
-    <title>Flask-WTF</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+    <title>{{title}}
+      -
+      {{subTitle}}</title>
   </head>
   <body>
     {% block title %}
-      タイトル
     {% endblock %}
     <hr/>
-    {% block content %}
-      内容
-    {% endblock %}
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {# <main> #}
+      {% block content %}{% endblock %}
+    {# </main> #}
+    <footer>
+      {% block footer %}{% endblock %}
+    </footer>
+
   </body>
+
 </html>
