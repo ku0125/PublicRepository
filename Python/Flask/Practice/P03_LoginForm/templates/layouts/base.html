@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block head %}{% endblock %}
-    <title>{{title}}
-      -
-      {{subTitle}}</title>
-  </head>
-  <body>
-    {% block title %}
-    {% endblock %}
-    <hr/>
-    <header>
-      {% block header %}{% endblock %}
-    </header>
-    {# <main> #}
-      {% block content %}{% endblock %}
-    {# </main> #}
-    <footer>
-      {% block footer %}{% endblock %}
-    </footer>
 
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+  <title>{{title}}
+    -
+    {{subTitle}}</title>
+</head>
+
+<body>
+  {% block title %}
+  {% endblock %}
+  <hr />
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {# <main> #}
+    {% block content %}{% endblock %}
+    {# </main> #}
+  <footer>
+    {% block footer %}{% endblock %}
+  </footer>
+
+</body>
 
 </html>

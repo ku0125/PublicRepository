@@ -4,19 +4,26 @@
 {% set subTitle = "ログインページ" %}
 
 {% block title %}
-  <h1>ログイン画面</h1>
+<h1>ログイン画面</h1>
 {% endblock %}
 
 {% block content %}
-  {% from "helpers/_formhelpers.html" import render_field %}
-  <form method="POST" novalidate="novalidate">
-    {{ form.csrf_token }}
-    {{ render_field(form.id) }}
-    {{ render_field(form.pw) }}
-    <br>
-    {{ form.submit() }}
-  </form>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<p class="{{ category }}">{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% from "helpers/_formhelpers.html" import render_field %}
+<form method="POST" novalidate="novalidate">
+  {{ form.csrf_token }}
+  {{ render_field(form.id) }}
+  {{ render_field(form.pw) }}
+  <br>
+  {{ form.submit() }}
+</form>
 {% endblock %}
 {% block footer %}
-  {% include "blocks/footer.html" %}
+{% include "blocks/footer.html" %}
 {% endblock footer %}

@@ -1,7 +1,10 @@
 {
   "HTML": {
     "beautifiers": [
-      "Pretty Diff"
-    ]
+      "Pretty Diff",
+      "JS-Beautify"
+    ],
+    "indent_inner_html": true,
+    "indent_scripts": "keep"
   }
 }
