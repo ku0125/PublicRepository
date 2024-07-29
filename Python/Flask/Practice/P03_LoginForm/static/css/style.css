@@ -21,6 +21,15 @@ body {
     margin: 0;
     padding: 0;
 }
+
+  .flash-error {
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid red;
+    background-color: #ffeeee;
+  }
 /* 
     .field-errors li: このクラスセレクタは、
     エラーメッセージのリストアイテムのスタイルを定義します。

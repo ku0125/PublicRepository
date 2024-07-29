@@ -1,7 +1,7 @@
 # Blueprintの登録
 import os
 
-from app2 import Login
+from LoginSystem01 import Login
 from flask import Flask, render_template
 
 # インスタンス生成

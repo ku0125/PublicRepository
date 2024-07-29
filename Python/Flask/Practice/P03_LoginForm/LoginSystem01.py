@@ -8,7 +8,7 @@ from flask.views import MethodView
 from forms import InputForm
 
 # url_prefixがメインの階層になる
-Login = Blueprint("LoginSystem", __name__, url_prefix="/LoginSystem")
+Login = Blueprint("LoginSystem", __name__, url_prefix="/LoginSystem01")
 
 
 class LoginSystem(MethodView):
@@ -31,13 +31,13 @@ class LoginSystem(MethodView):
         return render_template("pages/login.html", form=form)
 
 
-# ログインページのルート
-Login.add_url_rule("/login", view_func=LoginSystem.as_view("login"))
-
-
 class Success(MethodView):
     def get(self):
         return render_template("pages/success.html")
+
+
+# ログインページのルート
+Login.add_url_rule("/login", view_func=LoginSystem.as_view("login"))
 
 
 # 成功ページのルート
