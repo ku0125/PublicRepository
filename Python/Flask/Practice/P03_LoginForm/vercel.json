@@ -8,6 +8,10 @@
         {
             "src": "LoginSystem01.py",
             "use": "@vercel/python"
+        },
+        {
+            "src": "forms.py",
+            "use": "@vercel/python"
         }
     ],
     "routes": [
