@@ -9,15 +9,15 @@
 
 {% block content %}
 <div>
-  <ul>
-    <li>ID:
-      {{session['id']}}</li>
-    <li>パスワード:
-      {{session['pw']}}</li>
-  </ul>
-  <p>
-    <a href="{{ url_for('LoginSystem.login') }}">入力画面に戻る</a>
-  </p>
+    <ul>
+        <li>ID:
+            {{session['id']}}</li>
+        <li>パスワード:
+            {{session['pw']}}</li>
+    </ul>
+    <p>
+        <a href="{{ url_for('LoginSystem.login') }}">入力画面に戻る</a>
+    </p>
 </div>
 {% endblock %}
 {% block footer %}

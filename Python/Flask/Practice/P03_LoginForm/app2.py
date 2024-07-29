@@ -31,10 +31,14 @@ class LoginSystem(MethodView):
         return render_template("pages/login.html", form=form)
 
 
-Login.add_url_rule("/", view_func=LoginSystem.as_view("login"))
+# ログインページのルート
+Login.add_url_rule("/login", view_func=LoginSystem.as_view("login"))
 
 
-# 成功画面のルート
-@Login.route("/success")
-def success():
-    return render_template("pages/success.html")
+class Success(MethodView):
+    def get(self):
+        return render_template("pages/success.html")
+
+
+# 成功ページのルート
+Login.add_url_rule("/success", view_func=Success.as_view("success"))

@@ -1,5 +1,6 @@
 # Blueprintの登録
 import os
+
 from app2 import Login
 from flask import Flask, render_template
 
@@ -26,4 +27,4 @@ if __name__ == "__main__":
     app.debug = True
     # ホストとポートの指定
     # WEBサーバー実行
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=8080)
