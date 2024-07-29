@@ -4,6 +4,10 @@
         {
             "src": "app.py",
             "use": "@vercel/python"
+        },
+        {
+            "src": "LoginSystem01.py",
+            "use": "@vercel/python"
         }
     ],
     "routes": [
