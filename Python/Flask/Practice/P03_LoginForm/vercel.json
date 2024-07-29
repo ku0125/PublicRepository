@@ -4,14 +4,6 @@
         {
             "src": "app.py",
             "use": "@vercel/python"
-        },
-        {
-            "src": "LoginSystem01.py",
-            "use": "@vercel/python"
-        },
-        {
-            "src": "forms.py",
-            "use": "@vercel/python"
         }
     ],
     "routes": [
@@ -19,5 +11,8 @@
             "src": "/(.*)",
             "dest": "/app.py"
         }
-    ]
+    ],
+    "env": {
+        "SECRET_KEY": "hit"
+    }
 }
