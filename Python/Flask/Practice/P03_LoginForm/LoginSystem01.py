@@ -8,7 +8,7 @@ from flask.views import MethodView
 from forms import InputForm
 
 # url_prefixがメインの階層になる
-Login = Blueprint("LoginSystem", __name__, url_prefix="/LoginSystem01")
+Login = Blueprint("LoginSystem01", __name__, url_prefix="/LoginSystem01")
 
 
 class LoginSystem(MethodView):
@@ -24,10 +24,10 @@ class LoginSystem(MethodView):
             session["id"] = form.id.data
             session["pw"] = form.pw.data
             if session.get("id") == "test" and session.get("pw") == "test":
-                return redirect(url_for("LoginSystem.success"))
+                return redirect(url_for("LoginSystem01.success"))
             else:
                 flash("ログインに失敗しました。", "error")
-                return redirect(url_for("LoginSystem.login"))
+                return redirect(url_for("LoginSystem01.login"))
         return render_template("pages/login.html", form=form)
 
 

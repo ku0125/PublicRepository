@@ -2,6 +2,9 @@
 import os
 
 from LoginSystem01 import Login
+from app210 import app2
+from app06_2 import app06_2
+from LoginSystem04 import app04
 from flask import Flask, render_template
 
 # インスタンス生成
@@ -12,6 +15,9 @@ app.config["SECRET_KEY"] = os.urandom(24)
 
 # Blueprintの登録
 app.register_blueprint(Login)
+app.register_blueprint(app2)
+app.register_blueprint(app06_2)
+app.register_blueprint(app04)
 
 
 @app.route("/")
