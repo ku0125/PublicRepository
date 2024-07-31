@@ -1,4 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, url_for
+from flask.views import MethodView
 
 # Blueprintの名称：APP2
 # モジュール名：app2
@@ -7,7 +8,6 @@ app04 = Blueprint("LoginSystem04", __name__, url_prefix="/LoginSystem04")
 
 
 # MethodBase
-from flask.views import MethodView
 
 
 class LoginSystem(MethodView):
@@ -24,7 +24,7 @@ class LoginSystem(MethodView):
         if id == "yui" and pw == "1021":
             return redirect(url_for("LoginSystem04.success"))
         else:
-            print("idまたはpwが違います！")
+            print("idまたはpwが違います")
             return render_template("04/login.html")
 
 

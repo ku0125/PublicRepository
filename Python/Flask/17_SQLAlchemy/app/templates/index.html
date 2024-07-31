@@ -1,0 +1,37 @@
+{% set title = "ToDo" %}
+{% set subTitle = "リスト" %}
+{% extends 'layouts/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block head %}{% endblock head %}
+{% block header %}{% endblock header %}
+{% block content %}
+<form action="{{url_for('create')}}" method="post">
+    <input type="text" name="text">
+    <button type="submit">生成</button>
+</form>
+{% if datas %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in datas %}
+        <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.text}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+データがありません。
+{% endif %}
+{% endblock content %}
+{% block footer %}
+{% include "blocks/footer.html" %}
+{% endblock footer %}
