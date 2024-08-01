@@ -1,0 +1,47 @@
+{% set title = "社員管理システム" %}
+{% set subTitle = "部署リスト" %}
+{% extends 'layouts/base.html' %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock head %}
+{% block header %}{% endblock header %}
+{% block content %}
+  <div>
+    <ul>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+            <li>{{msg}}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+      {% endif %}
+      {% endwith %}
+  </ul>
+</div>
+<div>
+  <a href="{{url_for('dep.dCreate')}}">部署- 新規登録</a>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>部署名</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in datas %}
+      <tr>
+        <td>{{data.id}}</td>
+        <td>{{data.name}}</td>
+        <td>
+          <a href="{{ url_for('dep.detail', id=data.id) }}">更新[詳細]</a>
+          {# <a href="{{ url_for('dep.delete', id=data.id) }}">削除</a> #}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

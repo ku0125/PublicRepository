@@ -16,7 +16,14 @@ def index():
 class EmployeeCreate(MethodView):
     def get(self):
         # 新規登録モードでEmployeeDetail.htmlを呼び出す
-        return render_template("EmployeeDetail.html", mode=1)
+        # 部署IDのSelected処理
+        dbses = db.session
+        deptSelect = {}
+        depts = dbses.query(Department).all()
+        for dept in depts:
+            deptSelect[dept.id] = {"name": dept.name, "selected": ""}
+
+        return render_template("EmployeeDetail.html", mode=1, deptSelect=deptSelect)
 
     def post(self):
         name = request.form.get("name")

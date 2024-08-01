@@ -1,7 +1,7 @@
 {% set title = "社員管理システム" %}
 
 {% if mode == 1 %}
-  {% set subTitle = "新規登録" %}
+  {% set subTitle = "部署 - 新規登録" %}
 {% elif mode == 2 %}
   {% set subTitle = "詳細：" ~ data.name %}
 {% elif mode == 3 %}
@@ -13,14 +13,9 @@
 {% block content %}
   {% if data %}
     {% set name = data.name %}
-    {% set age = data.age %}
-    {% set genderSelect = data.genderSelect %}
-    {% set deptSelect = data.deptSelect %}
     {% set btnName = '更新' %}
   {% else %}
     {% set name = '' %}
-    {% set age = '' %}
-    {% set genderSelect = ['', '', ''] %}
     {# deptSelectはmain.pyから送られてくる。 #}
     {% set btnName = '新規登録' %}
   {% endif %}
@@ -37,16 +32,8 @@
         {% set disabled = ''%}
         <form action="" method="post">
         {% endif %}
-        <label for="name">氏名：</label>
+        <label for="name">部署名：</label>
         <input type="text" name="name" id="name" value="{{name}}" {{readonly}}>
-        <label for="age">年齢：</label>
-        <input type="number" name="age" id="age" value="{{age}}" {{readonly}}>
-        <label for="gender">性別：</label>
-        <select name="gender" {{disabled}}>
-          <option value="0" {{genderSelect[0]}}></option>
-          <option value="1" {{genderSelect[1]}}>男</option>
-          <option value="2" {{genderSelect[2]}}>女</option>
-        </select>
         <label for="dept_id">部署ID：</label>
         <select name="dept_id" {{disabled}}>
           {% for key in deptSelect.keys() %}
@@ -55,7 +42,7 @@
         </select>
         {# <input type="number" name="dept_id" id="dept_id" value="{{dept_id}}" {{readonly}}> #}
         {% if mode == 2 %}
-          <a href="{{url_for('eUpdate',id=data.id)}}">更新</a>
+          <a href="{{url_for('dUpdate',id=data.id)}}">更新</a>
         {% else %}
           <button type="submit">{{btnName}}</button>
         {% endif %}
