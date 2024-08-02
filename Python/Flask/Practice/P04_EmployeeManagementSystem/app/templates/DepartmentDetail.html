@@ -34,12 +34,13 @@
         {% endif %}
         <label for="name">部署名：</label>
         <input type="text" name="name" id="name" value="{{name}}" {{readonly}}>
-        <label for="dept_id">部署ID：</label>
-        <input type="number" name="id" id="id" value="{{id}}" {{readonly}}>
         {% if mode == 2 %}
+          <label for="dept_id">部署ID：{{data.id}}</label>
           <a href="{{url_for('dep.dUpdate',id=data.id)}}">更新</a>
         {% else %}
           <button type="submit">{{btnName}}</button>
         {% endif %}
       </form>
+      <a href="{{url_for('dep.index')}}">戻る</a>
+
     {% endblock content %}

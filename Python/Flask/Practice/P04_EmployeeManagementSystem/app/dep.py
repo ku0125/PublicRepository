@@ -78,17 +78,16 @@ class DepartmentUpdate(MethodView):
             res.deptSelect[res.id]["selected"] = "selected"
         except KeyError:
             pass
-        print(res.deptSelect)
+        # print(res.deptSelect)
 
         # 更新モードでEmployeeDetail.htmlを呼び出す
-        return render_template("DepartmentDetail.html", data=res, mode=3)
+        return render_template("DepartmentDetail.html", data=res, mode=3, id=id)
 
     def post(self, id):
         from app import Department, db
 
         name = request.form.get("name")
-        id = request.form.get("id")
-        data = Department(name=name, id=id)
+        data = Department(name=name)
         dbses = db.session
         res = dbses.query(Department).get(id)
         if res is None:
@@ -98,7 +97,6 @@ class DepartmentUpdate(MethodView):
         else:
             # データを更新する処理
             res.name = name
-            res.id = id
             dbses.commit()
             flash("データの更新に成功しました。")
             # 全件表示のページへリダイレクト
@@ -106,3 +104,22 @@ class DepartmentUpdate(MethodView):
 
 
 dep.add_url_rule("/update/<id>", view_func=DepartmentUpdate.as_view("dUpdate"))
+
+
+@dep.route("/delete/<id>")
+def delete(id):
+    from app import Department, db
+
+    dbses = db.session
+    res = dbses.query(Department).get(id)
+    if res is None:
+        # idが存在しない時
+        flash("指定されたIDが存在しないので失敗しました。")
+        return redirect(url_for("dep.index"))
+    else:
+        # データを削除する処理
+        res.del_flag = 1
+        dbses.commit()
+        flash("データの削除に成功しました。")
+        # 全件表示のページへリダイレクト
+        return redirect(url_for("dep.index"))

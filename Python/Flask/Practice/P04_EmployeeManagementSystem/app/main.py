@@ -19,7 +19,7 @@ class EmployeeCreate(MethodView):
         # 部署IDのSelected処理
         dbses = db.session
         deptSelect = {}
-        depts = dbses.query(Department).all()
+        depts = dbses.query(Department).filter(Department.del_flag == 0).all()
         for dept in depts:
             deptSelect[dept.id] = {"name": dept.name, "selected": ""}
 
@@ -60,7 +60,7 @@ def detail(id):
 
     # 部署IDのSelected処理
     res.deptSelect = {}
-    depts = dbses.query(Department).all()
+    depts = dbses.query(Department).filter(Department.del_flag == 0).all()
     for dept in depts:
         res.deptSelect[dept.id] = {"name": dept.name, "selected": ""}
     try:
@@ -87,7 +87,8 @@ class EmployeeUpdate(MethodView):
 
         # 部署IDのSelect処理
         res.deptSelect = {}
-        depts = dbses.query(Department).all()
+        depts = dbses.query(Department).filter(Department.del_flag == 0).all()
+
         for dept in depts:
             res.deptSelect[dept.id] = {"name": dept.name, "selected": ""}
         # 部署IDのSelected処理
