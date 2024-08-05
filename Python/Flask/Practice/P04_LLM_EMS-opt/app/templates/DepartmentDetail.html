@@ -1,0 +1,46 @@
+{% set title = "社員管理システム" %}
+
+{% if mode == 1 %}
+  {% set subTitle = "部署 - 新規登録" %}
+{% elif mode == 2 %}
+  {% set subTitle = "詳細：" ~ data.name %}
+{% elif mode == 3 %}
+  {% set subTitle = "更新：" ~ data.name %}
+{% endif %}
+
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+  {% if data %}
+    {% set name = data.name %}
+    {% set btnName = '更新' %}
+  {% else %}
+    {% set name = '' %}
+    {# deptSelectはmain.pyから送られてくる。 #}
+    {% set btnName = '新規登録' %}
+  {% endif %}
+  {% if mode == 1 %}
+    {% set readonly = ''%}
+    {% set disabled = ''%}
+    <form action="" method="post">
+    {% elif mode == 2 %}
+      {% set readonly = 'readonly'%}
+      {% set disabled = 'disabled'%}
+      <form>
+      {% elif mode == 3 %}
+        {% set readonly = ''%}
+        {% set disabled = ''%}
+        <form action="" method="post">
+        {% endif %}
+        <label for="name">部署名：</label>
+        <input type="text" name="name" id="name" value="{{name}}" {{readonly}}>
+        {% if mode == 2 %}
+          <label for="dept_id">部署ID：{{data.id}}</label>
+          <a href="{{url_for('dep.dUpdate',id=data.id)}}">更新</a>
+        {% else %}
+          <button type="submit">{{btnName}}</button>
+        {% endif %}
+      </form>
+      <a href="{{url_for('dep.index')}}">戻る</a>
+
+    {% endblock content %}
