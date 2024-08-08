@@ -1,0 +1,58 @@
+{% set title = "ECサイト" %}
+{% set subTitle = "リスト" %}
+{% extends 'layouts/base.html' %}
+
+{% block title %}{% endblock %}
+{% block head %}{% endblock head %}
+{% block header %}{% endblock header %}
+{% block content %}
+  <div>
+    <ul>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+            <li>{{msg}}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+      {% endif %}
+      {% endwith %}
+  </ul>
+</div>
+<div>
+  <a href="{{url_for('eCreate')}}">新規登録</a>
+  <a href="{{url_for('dep.index')}}">部署管理</a>
+</div>
+{% if datas %}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>氏名</th>
+        <th>部署名</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in datas %}
+        <tr>
+          <td>{{data.id}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.dept.name}}</td>
+          <td>
+            <a href="{{url_for('detail',id=data.id)}}">更新[詳細]</a>
+          </td>
+          <td>
+            <a href="{{url_for('delete',id=data.id)}}">削除</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  データがありません。
+{% endif %}
+{% endblock content %}
+{% block footer %}{% endblock footer %}
