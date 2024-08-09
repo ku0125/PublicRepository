@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = b"hit"
 
 # SQLAlchemyの接続先サーバーの設定
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///EmployeeManagementSystem.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "POSTGRES_URL"
 
 # Flaskインスタンスと連動設定
 db = SQLAlchemy(app)

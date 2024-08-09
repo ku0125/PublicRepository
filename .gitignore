@@ -23,6 +23,7 @@ build/
 # dev
 *.swo
 *.swp
+.env
 .DS_Store
 Thumbs.db
 set_env_vars.sh
