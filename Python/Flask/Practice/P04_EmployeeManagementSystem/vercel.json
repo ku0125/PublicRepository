@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "*.py",
+            "src": "./run.py",
             "use": "@vercel/python"
         }
     ],
@@ -11,8 +11,5 @@
             "src": "/(.*)",
             "dest": "/run.py"
         }
-    ],
-    "env": {
-        "SECRET_KEY": "hit"
-    }
+    ]
 }

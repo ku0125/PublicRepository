@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -5,10 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Sessionのシークレットキー
-app.secret_key = b"hit"
+app.secret_key = os.getenv("SECRET_KEY")
 
 # SQLAlchemyの接続先サーバーの設定
-app.config["SQLALCHEMY_DATABASE_URI"] = POSTGRES_URL
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")
 
 # Flaskインスタンスと連動設定
 db = SQLAlchemy(app)
